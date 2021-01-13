@@ -4,10 +4,10 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "start": "npm build && node ./dist/app",
+    "start": "npm build && env-cmd -f ./config/dev.env node ./dist/app",
     "build": "tsc",
-    "unitTests": "jest ./test/unit",
-    "apiTests": "jest ./test/api",
+    "unitTests": "env-cmd -f ./config/test-unit.env jest ./test/unit",
+    "apiTests": "env-cmd -f ./config/test-api.env jest ./test/api --runInBand",
     "allTests": "npm run unitTests && npm run apiTests"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.20",
     "babel-jest": "^26.6.3",
+    "env-cmd": "^10.1.0",
     "jest": "^26.6.3"
   }
 }
