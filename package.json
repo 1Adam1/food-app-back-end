@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "start": "npm build && env-cmd -f ./config/dev.env node ./dist/app",
+    "start": "npm run build && env-cmd -f ./config/dev.env node ./dist/app",
     "build": "tsc",
     "unitTests": "env-cmd -f ./config/test-unit.env jest ./test/unit",
     "apiTests": "env-cmd -f ./config/test-api.env jest ./test/api --runInBand",
@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/1Adam1/food-app-back-end#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "@types/mongoose": "^5.10.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
