@@ -1,7 +1,7 @@
 import express from 'express';
-import {connectMongoose} from './mongoose';
+import {DatabaseLoader} from './services/loaders/database-loader';
 
-connectMongoose();
+DatabaseLoader.load();
 
 const app = express();
 const port = process.env.SERVER_PORT;
