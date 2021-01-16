@@ -37,4 +37,22 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: Buffer
   }
+}, {
+  timestamps: true
 });
+
+userSchema.virtual('profiles', {
+  ref: 'Profile',
+  localField: '_id',
+  foreignField: 'maintainer'
+});
+
+userSchema.virtual('meals', {
+  ref: 'Meal',
+  localField: '_id',
+  foreignField: 'maintainer'
+});
+
+const User = mongoose.model('User', userSchema);
+
+export default User;
