@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import PersonalProfile from './personal-profile';
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -23,7 +22,7 @@ const personSchema = new mongoose.Schema({
 });
 
 personSchema.virtual('profiles', {
-  ref: PersonalProfile,
+  ref: 'PersonalProfile',
   localField: '_id',
   foreignField: 'person'
 });
