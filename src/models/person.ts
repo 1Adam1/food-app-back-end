@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Gender } from '../types/enums/gender.enum';
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -10,6 +11,9 @@ const personSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date
+  },
+  gender: {
+    type: Gender
   },
   description: {
     type: String

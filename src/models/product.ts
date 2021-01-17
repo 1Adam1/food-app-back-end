@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
     type: Unit,
     required: true
   },
-  calories: {
+  kilocalories: {
     type: Number,
     required: true,
     min: 0

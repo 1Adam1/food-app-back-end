@@ -11,7 +11,7 @@ const personalProfileSchema = new mongoose.Schema({
     required: true,
     ref: 'Person'
   },
-  dailyCalorieIntake: {
+  dailyKilocalorieIntake: {
     type: Number,
     required: true,
     min: 0
