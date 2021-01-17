@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const personalProfileSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
     trim: true,
     required: true
   },
@@ -18,8 +17,7 @@ const personalProfileSchema = new mongoose.Schema({
     min: 0
   },
   description: {
-    type: String,
-    required: false
+    type: String
   }
 }, {
   timestamps: true
