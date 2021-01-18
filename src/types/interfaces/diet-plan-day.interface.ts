@@ -4,5 +4,5 @@ export interface DietPlanDay {
   date: Date;
   description: string;
   mealTimes: MealTime[];
-  totalKiloCalories: number; 
+  totalKilocaloriesConsumption: number; 
 }

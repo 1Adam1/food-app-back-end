@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const dietPlanDaySchema = new mongoose.Schema({
+const consumedMealsHistoryDaySchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
@@ -35,6 +35,11 @@ const dietPlanDaySchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  expectedKilocaloriesConsumption: {
+    type: Number,
+    required: true,
+    min: 0
+  },
   plan: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'PersonalProfile',
@@ -44,5 +49,5 @@ const dietPlanDaySchema = new mongoose.Schema({
   timestamps: true
 });
 
-const DietPlanDay = mongoose.model('DietPlanDay', dietPlanDaySchema);
-export default DietPlanDay;
+const ConsumedMealsHistoryDay = mongoose.model('ConsumedMealsHistoryDay', consumedMealsHistoryDaySchema);
+export default ConsumedMealsHistoryDay;
