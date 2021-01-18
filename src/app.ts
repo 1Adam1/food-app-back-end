@@ -1,5 +1,5 @@
 import express from 'express';
-import {DatabaseLoader} from './services/loaders/database-loader';
+import {DatabaseLoader} from './services/loaders/database-loader.service';
 
 DatabaseLoader.load();
 
