@@ -40,8 +40,8 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-userSchema.virtual('profiles', {
-  ref: 'Profile',
+userSchema.virtual('people', {
+  ref: 'Person',
   localField: '_id',
   foreignField: 'maintainer'
 });

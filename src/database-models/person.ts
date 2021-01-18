@@ -4,10 +4,12 @@ import { Gender } from '../types/enums/gender.enum';
 const personSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   surname: {
-    type: String
+    type: String,
+    trim: true
   },
   dateOfBirth: {
     type: Date
@@ -16,10 +18,16 @@ const personSchema = new mongoose.Schema({
     type: Gender
   },
   description: {
-    type: String
+    type: String,
+    trim: true
   },
   avatar: {
     type: Buffer
+  },
+  maintainer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, {
   timestamps: true

@@ -17,11 +17,12 @@ const personalProfileSchema = new mongoose.Schema({
     min: 0
   },
   description: {
-    type: String
+    type: String,
+    trim: true
   }
 }, {
   timestamps: true
 });
 
-const PersonalProfile = mongoose.model('User', personalProfileSchema);
+const PersonalProfile = mongoose.model('PersonalProfile', personalProfileSchema);
 export default PersonalProfile;
