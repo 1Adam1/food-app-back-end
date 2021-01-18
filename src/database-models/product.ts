@@ -1,17 +1,21 @@
 import mongoose from 'mongoose';
-import {Unit} from '../types/enums/unit.enum';
+import { Unit } from '../types/enums/unit.enum';
 
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: true 
+    required: true
+  },
+  description: {
+    type: String,
+    trim: true
   },
   unit: {
     type: Unit,
     required: true
   },
-  kilocalories: {
+  kilocaloriesPerUnit: {
     type: Number,
     required: true,
     min: 0
@@ -27,3 +31,4 @@ productSchema.virtual('offers', {
 });
 
 const Product = mongoose.model('Product', productSchema);
+export default Product;
