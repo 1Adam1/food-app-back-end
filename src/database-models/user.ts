@@ -52,6 +52,24 @@ userSchema.virtual('meals', {
   foreignField: 'maintainer'
 });
 
+userSchema.virtual('shoppingLists', {
+  ref: 'ShoppingList',
+  localField: '_id',
+  foreignField: 'maintainer'
+});
+
+userSchema.virtual('products', {
+  ref: 'Product',
+  localField: '_id',
+  foreignField: 'maintainer'
+});
+
+userSchema.virtual('Shops', {
+  ref: 'Shop',
+  localField: '_id',
+  foreignField: 'maintainer'
+});
+
 const User = mongoose.model('User', userSchema);
 
 export default User;
