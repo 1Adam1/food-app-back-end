@@ -24,5 +24,17 @@ const personalProfileSchema = new mongoose.Schema({
   timestamps: true
 });
 
+personalProfileSchema.virtual('consumedMealsHistory', {
+  ref: 'ConsumedMealsHistoryDay',
+  localField: '_id',
+  foreignField: 'profile'
+});
+
+personalProfileSchema.virtual('dietPlan', {
+  ref: 'DietPlanDay',
+  localField: '_id',
+  foreignField: 'profile'
+});
+
 const PersonalProfile = mongoose.model('PersonalProfile', personalProfileSchema);
 export default PersonalProfile;

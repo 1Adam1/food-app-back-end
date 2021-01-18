@@ -1,6 +1,6 @@
 import { MealPortion } from './meal-portion.interface';
 
 export interface MealTime {
-  mealPortion: MealPortion;
+  portion: MealPortion;
   time: Date;
 }
