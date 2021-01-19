@@ -1,9 +1,8 @@
-import { DietPlanDay } from "./diet-plan-day.interface";
-import { Meal } from "./meal.interface";
+import { MealTime } from './meal-time.interface';
 
 export interface ConsumedMealsHistoryDay {
   date: Date; 
-  meals: Meal[];
+  mealTimes: MealTime[];
   totalKilocaloriesConsumption: number;
   expectedKilocaloriesConsumption: number;
 }

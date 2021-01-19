@@ -1,6 +1,6 @@
 import { ConsumedMealsHistoryDay } from "./consumed-meals-history-day.interface";
-import { DietPlanDay } from "./diet-plan-day.interface";
-import { Person } from "./person.interface";
+import { DietPlanDay } from './diet-plan-day.interface';
+import { Person } from './person.interface';
 
 export interface PersonalProfile {
   name: string;

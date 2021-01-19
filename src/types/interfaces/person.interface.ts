@@ -6,5 +6,4 @@ export interface Person {
   dateOfBirth: Date;
   gender: Gender;
   description: string;
-  avatar: Buffer;
 }
