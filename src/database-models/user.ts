@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -68,6 +69,16 @@ userSchema.virtual('Shops', {
   ref: 'Shop',
   localField: '_id',
   foreignField: 'maintainer'
+});
+
+userSchema.pre('save', async function (next) {
+  const user: mongoose.Document = this;
+
+  if (user.isModified('password')) {
+    user.set('password', await bcrypt.hash(user.get('password'), 8));
+  }
+
+  next();
 });
 
 const User = mongoose.model('User', userSchema);
