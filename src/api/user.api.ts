@@ -17,4 +17,12 @@ router.post('/users', async (request: Request, response: Response) => {
   }
 });
 
+// router.get('/users/me', async (request: Request, response: Response) => {
+//   try {
+//     user
+//   } catch (error) {
+//     response.status(400).send(error);
+//   }
+// });
+
 export default router;

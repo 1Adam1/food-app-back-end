@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import {PasswordHashingService} from '../services/authentication/password-hashing.service';
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -75,7 +75,7 @@ userSchema.pre('save', async function (next) {
   const user: mongoose.Document = this;
 
   if (user.isModified('password')) {
-    user.set('password', await bcrypt.hash(user.get('password'), 8));
+    user.set('password', await PasswordHashingService.hashPassword(user.get('password')));
   }
 
   next();
