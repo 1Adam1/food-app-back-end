@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { PasswordHashingService } from '../services/authentication/password-hashing.service';
+import { UserDataModelInterface } from './interfaces/user-data.model.interface';
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -30,8 +31,10 @@ const userSchema = new mongoose.Schema({
   },
   tokens: [
     {
-      type: String,
-      required: true
+      token: {
+        type: String,
+        required: true
+      }
     }
   ],
   avatar: {
@@ -81,6 +84,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model<UserDataModelInterface>('User', userSchema);
 
 export default User;

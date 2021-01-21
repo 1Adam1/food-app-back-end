@@ -1,5 +1,7 @@
 import {Router, Response, Request} from 'express';
 import UserModel from '../database-models/user';
+import { AuthenticationService } from '../services/authentication/authentication.service';
+import { UserData } from '../types/interfaces/user-data.interface';
 
 const router = Router();
 
@@ -8,6 +10,10 @@ router.post('/users', async (request: Request, response: Response) => {
 
   try {
     const result = await user.save();
+    const token = AuthenticationService.generateAuthenticationToken(result._id.toString());
+
+    user.tokens = user.tokens ? user.tokens.concat({token}) : [{token}];
+    await user.save();
 
     response.status(201).send({
       user: result 
