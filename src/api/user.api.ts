@@ -1,7 +1,6 @@
 import {Router, Response, Request} from 'express';
 import UserModel from '../database-models/user';
 import { AuthenticationService } from '../services/authentication/authentication.service';
-import { UserData } from '../types/interfaces/user-data.interface';
 
 const router = Router();
 

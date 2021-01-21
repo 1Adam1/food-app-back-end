@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { PasswordHashingService } from '../services/authentication/password-hashing.service';
+import { UserData } from '../types/interfaces/user-data.interface';
 import { UserDataModelInterface } from './interfaces/user-data.model.interface';
 
 const userSchema = new mongoose.Schema({
@@ -83,6 +84,15 @@ userSchema.pre('save', async function (next) {
 
   next();
 });
+
+userSchema.methods.toJSON = function() {
+  const userObject = this.toObject() as any;
+  const fieldsToDelete = ['password', 'tokens', 'avatar', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete userObject[field]);
+
+  return userObject;
+}
 
 const User = mongoose.model<UserDataModelInterface>('User', userSchema);
 
