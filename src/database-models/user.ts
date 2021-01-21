@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { PasswordHashingService } from '../services/authentication/password-hashing.service';
+import { Token } from '../types/interfaces/token';
 import { UserData } from '../types/interfaces/user-data.interface';
-import { UserDataModelInterface } from './interfaces/user-data.model.interface';
+import { UserDataModelInterface, UserDataStaticModelInterface } from './interfaces/user-data.model.interface';
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -92,8 +94,32 @@ userSchema.methods.toJSON = function() {
   fieldsToDelete.forEach(field => delete userObject[field]);
 
   return userObject;
+};
+
+userSchema.methods.generateToken = async function(): Promise<Token> {
+  const user = this as UserDataModelInterface;
+  const token = AuthenticationService.generateAuthenticationToken(user._id.toString());
+
+  user.tokens = user.tokens.concat({token});
+  await user.save();
+
+  return {token};
 }
 
-const User = mongoose.model<UserDataModelInterface>('User', userSchema);
+userSchema.statics.findByCredentials = async function(login: string, password: string): Promise<UserData> {
+  const user = await User.findOne({login});
+  if (!user) {
+    throw new Error('Unable to login');
+  }
+  
+  const passwordMatch = await PasswordHashingService.matchPasswords(password, user.password);
 
+  if (!passwordMatch) {
+    throw new Error('Wrong password');
+  }
+
+  return user;
+};
+
+const User = mongoose.model<UserDataModelInterface, UserDataStaticModelInterface>('User', userSchema);
 export default User;

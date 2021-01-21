@@ -10,23 +10,29 @@ router.post('/users', async (request: Request, response: Response) => {
 
   try {
     const result = await user.save();
-    const token = AuthenticationService.generateAuthenticationToken(result._id.toString());
-
-    user.tokens = user.tokens.concat({token});
-    await user.save();
+    const token = await user.generateToken();
 
     response.status(201).send({
-      user: result 
+      user: result ,
+      token
     });
   } catch (error) {
     response.status(400).send(error);
   }
 });
 
-// router.post('');
+router.post('/users/login', async (request: ExtendedRequestWithUserDataType, response: Response) => {
+  try {
+    const user = await UserModel.findByCredentials(request.body.login, request.body.password);
+    const token = await user.generateToken();
 
-router.get('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
-  console.log('test', request);
+    response.send({user, token});
+  } catch (error) {
+    response.status(400).send({error});
+  }
+});
+
+router.get('/users/me', AuthenticationService.authenticateUser, (request: ExtendedRequestWithUserDataType, response: Response) => {
   response.send(request.extendedData);
 });
 
