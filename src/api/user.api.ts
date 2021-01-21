@@ -11,7 +11,7 @@ router.post('/users', async (request: Request, response: Response) => {
     const result = await user.save();
     const token = AuthenticationService.generateAuthenticationToken(result._id.toString());
 
-    user.tokens = user.tokens ? user.tokens.concat({token}) : [{token}];
+    user.tokens = user.tokens.concat({token});
     await user.save();
 
     response.status(201).send({
