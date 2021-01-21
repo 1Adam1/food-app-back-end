@@ -1,4 +1,5 @@
 import {Router, Response, Request} from 'express';
+import { ExtendedRequestWithUserDataType } from '../database-models/types/extended-request-with-user-data.type';
 import UserModel from '../database-models/user';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 
@@ -22,12 +23,11 @@ router.post('/users', async (request: Request, response: Response) => {
   }
 });
 
-// router.get('/users/me', async (request: Request, response: Response) => {
-//   try {
-//     user
-//   } catch (error) {
-//     response.status(400).send(error);
-//   }
-// });
+// router.post('');
+
+router.get('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+  console.log('test', request);
+  response.send(request.extendedData);
+});
 
 export default router;

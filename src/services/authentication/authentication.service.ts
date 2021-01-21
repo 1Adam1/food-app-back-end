@@ -3,10 +3,11 @@ import User from '../../database-models/user';
 import jsonwebtoken from 'jsonwebtoken';
 import { TokenModelInterface } from '../../database-models/interfaces/token.model.interface';
 import { ExtendedRequestWithUserDataType } from '../../database-models/types/extended-request-with-user-data.type';
+import { Console } from 'console';
 
 export class AuthenticationService {
   static async authenticateUser(request: ExtendedRequestWithUserDataType, response: Response, next: NextFunction) {   
-    this.checkJWTSecret();
+    AuthenticationService.checkJWTSecret();
     
     try {
       const token = request.header('Authorization')?.replace('Bearer ', '');
@@ -21,9 +22,8 @@ export class AuthenticationService {
       if (!user) {
         throw new Error();
       }
-
-      request.user = user;
-      request.token = {token};
+      
+      request.extendedData = {user, token: {token}};
       next();
     } catch (error) {
       response.status(401).send({error: 'Please authenticate'});
