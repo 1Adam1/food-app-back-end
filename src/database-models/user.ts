@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import {PasswordHashingService} from '../services/authentication/password-hashing.service';
+import { PasswordHashingService } from '../services/authentication/password-hashing.service';
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
     unique: true
-  }, 
+  },
   password: {
     type: String,
     required: true,
