@@ -4,6 +4,11 @@ import { PasswordHashingService } from '../services/authentication/password-hash
 import { Token } from '../types/interfaces/token';
 import { UserData } from '../types/interfaces/user-data.interface';
 import { UserDataModelInterface, UserDataStaticModelInterface } from './interfaces/user-data.model.interface';
+import Meal from './meal';
+import Person from './person';
+import Product from './product';
+import Shop from './shop';
+import ShoppingList from './shopping-list';
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -80,6 +85,16 @@ userSchema.pre('save', async function (next) {
   if (user.isModified('password')) {
     user.set('password', await PasswordHashingService.hashPassword(user.get('password')));
   }
+
+  next();
+});
+
+userSchema.pre('remove', async function (next) {
+  await Person.deleteMany({mainteiner: this._id});
+  await Meal.deleteMany({mainteiner: this._id});
+  await ShoppingList.deleteMany({mainteiner: this._id});
+  await Product.deleteMany({mainteiner: this._id});
+  await Shop.deleteMany({mainteiner: this._id});
 
   next();
 });
