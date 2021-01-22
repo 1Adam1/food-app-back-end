@@ -32,6 +32,19 @@ router.post('/users/login', async (request: ExtendedRequestWithUserDataType, res
   }
 });
 
+router.post('/users/logout', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+  try {
+    const {user, token} = request.extendedData!;
+
+    user.tokens = user.tokens.filter(checkedToken => checkedToken.token !== token.token);
+    await user.save();
+
+    response.send();
+  } catch (error) {
+    response.status(500).send();
+  }
+});
+
 router.get('/users/me', AuthenticationService.authenticateUser, (request: ExtendedRequestWithUserDataType, response: Response) => {
   response.send(request.extendedData);
 });

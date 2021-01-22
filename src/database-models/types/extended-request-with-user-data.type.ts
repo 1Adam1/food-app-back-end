@@ -1,10 +1,10 @@
 import { Request } from 'express';
 import { Token } from '../../types/interfaces/token';
-import { UserData } from '../../types/interfaces/user-data.interface';
+import { UserDataModelInterface } from '../interfaces/user-data.model.interface';
 
 class ExtendedData {
   extendedData?: {
-    user: UserData;
+    user: UserDataModelInterface;
     token: Token;
   };
 }
