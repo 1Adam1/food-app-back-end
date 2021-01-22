@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { ShopDataModelInterface } from './interfaces/shop.model.interface';
 
 const shopSchema = new mongoose.Schema({
   name: {
@@ -25,5 +26,5 @@ shopSchema.virtual('productOffers', {
   foreignField: 'shop'
 });
 
-const Shop = mongoose.model('Shop', shopSchema);
+const Shop = mongoose.model<ShopDataModelInterface>('Shop', shopSchema);
 export default Shop;

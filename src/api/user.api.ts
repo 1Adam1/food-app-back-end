@@ -1,6 +1,6 @@
 import {Router, Response, Request} from 'express';
 import { UserDataModelIdexableInterface } from '../database-models/interfaces/user-data.model.interface';
-import { ExtendedRequestWithUserDataType } from '../database-models/types/extended-request-with-user-data.type';
+import { ExtendedRequestType } from '../database-models/types/extended-requests.type';
 import UserModel from '../database-models/user';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 
@@ -22,7 +22,7 @@ router.post('/users', async (request: Request, response: Response) => {
   }
 });
 
-router.post('/users/login', async (request: ExtendedRequestWithUserDataType, response: Response) => {
+router.post('/users/login', async (request: ExtendedRequestType, response: Response) => {
   try {
     const user = await UserModel.findByCredentials(request.body.login, request.body.password);
     const token = await user.generateToken();
@@ -33,9 +33,10 @@ router.post('/users/login', async (request: ExtendedRequestWithUserDataType, res
   }
 });
 
-router.post('/users/logout', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+router.post('/users/logout', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
   try {
-    const {user, token} = request.extendedData!;
+    const user = request.extendedData!.user!;
+    const token = request.extendedData!.token!;
 
     user.tokens = user.tokens.filter(checkedToken => checkedToken.token !== token.token);
     await user.save();
@@ -46,9 +47,9 @@ router.post('/users/logout', AuthenticationService.authenticateUser, async (requ
   }
 });
 
-router.post('/users/logoutAll', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+router.post('/users/logoutAll', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
   try {
-    const user = request.extendedData!.user;
+    const user = request.extendedData!.user!;
 
     user.tokens = [];
     await user.save();
@@ -59,11 +60,11 @@ router.post('/users/logoutAll', AuthenticationService.authenticateUser, async (r
   }
 });
 
-router.get('/users/me', AuthenticationService.authenticateUser, (request: ExtendedRequestWithUserDataType, response: Response) => {
+router.get('/users/me', AuthenticationService.authenticateUser, (request: ExtendedRequestType, response: Response) => {
   response.send(request.extendedData);
 });
 
-router.patch('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+router.patch('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
   const allowedFieldsKeys = ['name', 'surname', 'description', 'password'];
   const bodyFieldKeys = Object.keys(request.body);
   const operationIsValid = bodyFieldKeys.every(key => allowedFieldsKeys.includes(key));
@@ -73,18 +74,24 @@ router.patch('/users/me', AuthenticationService.authenticateUser, async (request
   }
 
   try {
-    bodyFieldKeys.forEach(key => (request.extendedData!.user as UserDataModelIdexableInterface)[key] = request.body[key]);
-    await request.extendedData!.user.save();
+    const user = request.extendedData!.user!;
+    const token = request.extendedData!.token!;
+    
+    bodyFieldKeys.forEach(key => (user as UserDataModelIdexableInterface)[key] = request.body[key]);
+    await user.save();
 
-    response.send(request.extendedData);
+    response.send({
+      user,
+      token
+    });
   } catch (error) {
     response.status(400).send();
   }
 });
 
-router.delete('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+router.delete('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
   try {
-    await request.extendedData!.user.remove();
+    await request.extendedData!.user!.remove();
 
     response.send();
   } catch (error) {
