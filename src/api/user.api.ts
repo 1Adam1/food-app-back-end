@@ -1,4 +1,5 @@
 import {Router, Response, Request} from 'express';
+import { UserDataModelIdexableInterface } from '../database-models/interfaces/user-data.model.interface';
 import { ExtendedRequestWithUserDataType } from '../database-models/types/extended-request-with-user-data.type';
 import UserModel from '../database-models/user';
 import { AuthenticationService } from '../services/authentication/authentication.service';
@@ -60,6 +61,25 @@ router.post('/users/logoutAll', AuthenticationService.authenticateUser, async (r
 
 router.get('/users/me', AuthenticationService.authenticateUser, (request: ExtendedRequestWithUserDataType, response: Response) => {
   response.send(request.extendedData);
+});
+
+router.patch('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+  const allowedFieldsKeys = ['name', 'surname', 'description', 'password'];
+  const bodyFieldKeys = Object.keys(request.body);
+  const operationIsValid = bodyFieldKeys.every(key => allowedFieldsKeys.includes(key));
+  
+  if (!operationIsValid) {
+    return response.status(400).send({error: 'Invalid updates'});
+  }
+
+  try {
+    bodyFieldKeys.forEach(key => (request.extendedData!.user as UserDataModelIdexableInterface)[key] = request.body[key]);
+    await request.extendedData!.user.save();
+
+    response.send(request.extendedData);
+  } catch (error) {
+    response.status(400).send();
+  }
 });
 
 export default router;
