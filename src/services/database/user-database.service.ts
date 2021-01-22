@@ -29,12 +29,4 @@ export class UserDatabaseService {
   deleteLogedUser() {
 
   }
-
-  addUsersAvatar(userId: ObjectId, avatar: Buffer) {
-
-  }
-
-  deleteUsersAvatar(userId: ObjectId) {
-    
-  }
 }

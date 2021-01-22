@@ -7,5 +7,4 @@ export interface UserData {
   surname: string;
   description?: string;
   tokens: Token[];
-  avatar?: Buffer;
 }

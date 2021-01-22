@@ -39,10 +39,7 @@ const userSchema = new mongoose.Schema({
         required: true
       }
     }
-  ],
-  avatar: {
-    type: Buffer
-  }
+  ]
 }, {
   timestamps: true
 });
@@ -89,7 +86,7 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.toJSON = function() {
   const userObject = this.toObject() as any;
-  const fieldsToDelete = ['password', 'tokens', 'avatar', 'createdAt', 'updatedAt', '__v'];
+  const fieldsToDelete = ['password', 'tokens', 'createdAt', 'updatedAt', '__v'];
 
   fieldsToDelete.forEach(field => delete userObject[field]);
 

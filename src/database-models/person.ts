@@ -21,9 +21,6 @@ const personSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  avatar: {
-    type: Buffer
-  },
   maintainer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
