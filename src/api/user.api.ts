@@ -82,4 +82,14 @@ router.patch('/users/me', AuthenticationService.authenticateUser, async (request
   }
 });
 
+router.delete('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+  try {
+    await request.extendedData!.user.remove();
+
+    response.send();
+  } catch (error) {
+    response.status(500).send();
+  }
+});
+
 export default router;
