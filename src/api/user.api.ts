@@ -45,6 +45,19 @@ router.post('/users/logout', AuthenticationService.authenticateUser, async (requ
   }
 });
 
+router.post('/users/logoutAll', AuthenticationService.authenticateUser, async (request: ExtendedRequestWithUserDataType, response: Response) => {
+  try {
+    const user = request.extendedData!.user;
+
+    user.tokens = [];
+    await user.save();
+
+    response.send();
+  } catch (error) {
+    response.status(500).send();
+  }
+});
+
 router.get('/users/me', AuthenticationService.authenticateUser, (request: ExtendedRequestWithUserDataType, response: Response) => {
   response.send(request.extendedData);
 });
