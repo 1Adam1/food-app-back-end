@@ -1,6 +1,5 @@
 import { Response, NextFunction } from 'express';
 import ProductOffer from '../../database-models/product-offer';
-import Shop from '../../database-models/shop';
 import { ExtendedRequestType } from '../../database-models/types/extended-requests.type';
 import { ProductAuthorizationService } from './product-autorization.service';
 import { ShopAuthorizationService } from './shop-autorization.service';
@@ -22,13 +21,15 @@ export class ProductOfferAuthorizationService {
       throw new Error();
     }
 
-    const productOffer = await ProductOffer.findOne({_id: productOfferId})
-
+    const productOffer = await ProductOffer.findOne({_id: productOfferId});
     if (!productOffer) {
       throw new Error();
     }
 
     request.extendedData.productOffer = productOffer;
+    request.query.shopId = productOffer.shop;
+    request.query.productId = productOffer.product;
+
     request = await ProductAuthorizationService.extendRequestWithProperData(request);
     request = await ShopAuthorizationService.extendRequestWithProperData(request); 
     

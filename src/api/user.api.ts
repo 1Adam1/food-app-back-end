@@ -1,5 +1,11 @@
 import {Router, Response, Request} from 'express';
+import { Model } from 'mongoose';
 import { UserDataModelIdexableInterface } from '../database-models/interfaces/user-data.model.interface';
+import Meal from '../database-models/meal';
+import Person from '../database-models/person';
+import Product from '../database-models/product';
+import Shop from '../database-models/shop';
+import ShoppingList from '../database-models/shopping-list';
 import { ExtendedRequestType } from '../database-models/types/extended-requests.type';
 import UserModel from '../database-models/user';
 import { AuthenticationService } from '../services/authentication/authentication.service';
@@ -97,6 +103,37 @@ router.delete('/users/me', AuthenticationService.authenticateUser, async (reques
   } catch (error) {
     response.status(500).send();
   }
+});
+
+const getAllModelDataMaintainedByUser = async (path: string, request: ExtendedRequestType, response: Response) => {
+  try {
+    const user = request.extendedData!.user;
+    const results = await user!.populate({path}).execPopulate() as any;
+
+    response.send(results[path]);
+  } catch (error) {
+    response.status(500).send();
+  }
+}
+
+router.get('/users/me/shops', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
+  await getAllModelDataMaintainedByUser('shops', request, response);
+});
+
+router.get('/users/me/products', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
+  await getAllModelDataMaintainedByUser('products', request, response);
+});
+
+router.get('/users/me/people', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
+  await getAllModelDataMaintainedByUser('people', request, response);
+});
+
+router.get('/users/me/meals', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
+  await getAllModelDataMaintainedByUser('meals', request, response);
+});
+
+router.get('/users/me/shopping-lists', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
+  await getAllModelDataMaintainedByUser('shoppingLists', request, response);
 });
 
 export default router;

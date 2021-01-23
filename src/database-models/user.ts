@@ -73,7 +73,7 @@ userSchema.virtual('products', {
   foreignField: 'maintainer'
 });
 
-userSchema.virtual('Shops', {
+userSchema.virtual('shops', {
   ref: 'Shop',
   localField: '_id',
   foreignField: 'maintainer'
