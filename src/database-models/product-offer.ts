@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Currency } from '../types/enums/currency.enum';
+import { ProductOfferDataModelInterface } from './interfaces/product-offer.model.interface';
 
 const productOfferSchema = new mongoose.Schema({
   name: {
@@ -50,5 +51,5 @@ productOfferSchema.methods.toJSON = function() {
   return productOfferObject;
 };
 
-const ProductOffer = mongoose.model('ProductOffer', productOfferSchema);
+const ProductOffer = mongoose.model<ProductOfferDataModelInterface>('ProductOffer', productOfferSchema);
 export default ProductOffer;

@@ -21,7 +21,7 @@ router.post('/shops', AuthenticationService.authenticateUser, async (request: Ex
   }
 });
 
-router.get('/shops/:id',
+router.get('/shops/:shopId',
   AuthenticationService.authenticateUser,
   ShopAuthorizationService.autorizateShop,
   async (request: ExtendedRequestType, response: Response) => {
@@ -33,7 +33,7 @@ router.get('/shops/:id',
   }
 );
 
-router.patch('/shops/:id',
+router.patch('/shops/:shopId',
   AuthenticationService.authenticateUser,
   ShopAuthorizationService.autorizateShop,
   async (request: ExtendedRequestType, response: Response) => {
@@ -56,7 +56,7 @@ router.patch('/shops/:id',
   }
 );
 
-router.delete('/shops/:id',
+router.delete('/shops/:shopId',
   AuthenticationService.authenticateUser,
   ShopAuthorizationService.autorizateShop,
   async (request: ExtendedRequestType, response: Response) => {

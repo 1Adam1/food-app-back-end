@@ -5,12 +5,14 @@ import { ExtendedRequestType } from '../../database-models/types/extended-reques
 export class ShopAuthorizationService {
   static async autorizateShop(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      if (!request.extendedData?.user || !request.params.id) {
+      const shopId = request.params.shopId || request.query.shopId;
+
+      if (!request.extendedData?.user || !shopId) {
         throw new Error();
       }
 
       const maintainer = request.extendedData.user._id;
-      const shop = await Shop.findOne({_id: request.params.id,  maintainer})
+      const shop = await Shop.findOne({_id: shopId,  maintainer})
 
       if (!shop) {
         throw new Error();

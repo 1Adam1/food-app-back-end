@@ -21,7 +21,7 @@ router.post('/products', AuthenticationService.authenticateUser, async (request:
   }
 });
 
-router.get('/products/:id',
+router.get('/products/:productId',
   AuthenticationService.authenticateUser,
   ProductAuthorizationService.autorizateProduct,
   async (request: ExtendedRequestType, response: Response) => {
@@ -33,7 +33,7 @@ router.get('/products/:id',
   }
 );
 
-router.patch('/products/:id',
+router.patch('/products/:productId',
   AuthenticationService.authenticateUser,
   ProductAuthorizationService.autorizateProduct,
   async (request: ExtendedRequestType, response: Response) => {
@@ -56,7 +56,7 @@ router.patch('/products/:id',
   }
 );
 
-router.delete('/products/:id',
+router.delete('/products/:productId',
   AuthenticationService.authenticateUser,
   ProductAuthorizationService.autorizateProduct,
   async (request: ExtendedRequestType, response: Response) => {

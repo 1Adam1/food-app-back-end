@@ -5,12 +5,14 @@ import { ExtendedRequestType } from '../../database-models/types/extended-reques
 export class ProductAuthorizationService {
   static async autorizateProduct(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      if (!request.extendedData?.user || !request.params.id) {
+      const productId = request.params.productId || request.query.productId;
+
+      if (!request.extendedData?.user || !productId) {
         throw new Error();
       }
 
       const maintainer = request.extendedData.user._id;
-      const product = await Product.findOne({_id: request.params.id,  maintainer})
+      const product = await Product.findOne({_id: productId,  maintainer})
 
       if (!product) {
         throw new Error();

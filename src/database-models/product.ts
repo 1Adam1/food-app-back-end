@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { Unit } from '../types/enums/unit.enum';
+import { ProductDataModelInterface } from './interfaces/product.model.interface';
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -44,5 +45,5 @@ productSchema.methods.toJSON = function() {
   return productObject;
 };
 
-const Product = mongoose.model('Product', productSchema);
+const Product = mongoose.model<ProductDataModelInterface>('Product', productSchema);
 export default Product;
