@@ -25,8 +25,34 @@ const mealSchema = new mongoose.Schema({
     }
   ],
   recipe: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Recipe'
+    steps: [
+      {
+        title: {
+          type: String,
+          trim: true,
+          required: true
+        },
+        description: {
+          type: String,
+          required: true,
+          trim: true
+        }
+      }
+    ],
+    details: {
+      description: {
+        type: String,
+        trim: true
+      },
+      complexity: {
+        type: String,
+        trim: true
+      },
+      time: {
+        type: String,
+        trim: true
+      }
+    }
   },
   totalKilocalories: {
     type: Number,
