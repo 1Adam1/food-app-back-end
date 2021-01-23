@@ -69,4 +69,19 @@ router.delete('/products/:productId',
   }
 );
 
+router.get('/products/:productId/offers', 
+  AuthenticationService.authenticateUser,
+  ProductAuthorizationService.autorizateProduct,
+  async (request: ExtendedRequestType, response: Response) => {
+    try {
+      const product = request.extendedData!.product;
+      const result = await product!.populate({path: 'offers'}).execPopulate();
+  
+      response.send(result.offers);
+    } catch (error) {
+      response.status(500).send();
+    }
+  }
+);
+
 export default router;

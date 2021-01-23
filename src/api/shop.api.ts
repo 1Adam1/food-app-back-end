@@ -69,4 +69,19 @@ router.delete('/shops/:shopId',
   }
 );
 
+router.get('/shops/:shopId/offers', 
+  AuthenticationService.authenticateUser,
+  ShopAuthorizationService.autorizateShop,
+  async (request: ExtendedRequestType, response: Response) => {
+    try {
+      const shop = request.extendedData!.shop;
+      const result = await shop!.populate({path: 'offers'}).execPopulate();
+  
+      response.send(result.offers);
+    } catch (error) {
+      response.status(500).send();
+    }
+  }
+);
+
 export default router;

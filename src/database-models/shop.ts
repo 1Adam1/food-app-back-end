@@ -21,7 +21,7 @@ const shopSchema = new mongoose.Schema({
   timestamps: true
 });
 
-shopSchema.virtual('productOffers', {
+shopSchema.virtual('offers', {
   ref: 'ProductOffer',
   localField: '_id',
   foreignField: 'shop'
