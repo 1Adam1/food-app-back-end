@@ -41,5 +41,14 @@ const productOfferSchema = new mongoose.Schema({
   timestamps: true
 });
 
+productOfferSchema.methods.toJSON = function() {
+  const productOfferObject = this.toObject() as any;
+  const fieldsToDelete = ['maintainer', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete productOfferObject[field]);
+
+  return productOfferObject;
+};
+
 const ProductOffer = mongoose.model('ProductOffer', productOfferSchema);
 export default ProductOffer;
