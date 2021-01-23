@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  unit: {
+  defaultUnit: {
     type: Unit,
     required: true
   },
@@ -34,6 +34,15 @@ productSchema.virtual('offers', {
   localField: '_id',
   foreignField: 'product'
 });
+
+productSchema.methods.toJSON = function() {
+  const productObject = this.toObject() as any;
+  const fieldsToDelete = ['maintainer', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete productObject[field]);
+
+  return productObject;
+};
 
 const Product = mongoose.model('Product', productSchema);
 export default Product;

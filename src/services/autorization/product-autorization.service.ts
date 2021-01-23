@@ -3,7 +3,7 @@ import Product from '../../database-models/product';
 import { ExtendedRequestType } from '../../database-models/types/extended-requests.type';
 
 export class ProductAuthorizationService {
-  static async autorizateShop(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async autorizateProduct(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       if (!request.extendedData?.user || !request.params.id) {
         throw new Error();
