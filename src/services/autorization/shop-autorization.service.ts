@@ -5,23 +5,29 @@ import { ExtendedRequestType } from '../../database-models/types/extended-reques
 export class ShopAuthorizationService {
   static async autorizateShop(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      const shopId = request.params.shopId || request.query.shopId;
-
-      if (!request.extendedData?.user || !shopId) {
-        throw new Error();
-      }
-
-      const maintainer = request.extendedData.user._id;
-      const shop = await Shop.findOne({_id: shopId,  maintainer})
-
-      if (!shop) {
-        throw new Error();
-      }
-
-      request.extendedData.shop = shop;
+      request = await ShopAuthorizationService.extendRequestWithProperProduct(request);
       next();
     } catch (error) {
       response.status(404).send({error: 'Shop not found'});
     }
+  }
+
+  static async extendRequestWithProperProduct(request: ExtendedRequestType): Promise<ExtendedRequestType> {
+    const shopId = request.params.shopId || request.query.shopId;
+
+    if (!request.extendedData?.user || !shopId) {
+      throw new Error();
+    }
+
+    const maintainer = request.extendedData.user._id;
+    const shop = await Shop.findOne({_id: shopId,  maintainer})
+
+    if (!shop) {
+      throw new Error();
+    }
+
+    request.extendedData.shop = shop;
+    
+    return request;
   }
 }

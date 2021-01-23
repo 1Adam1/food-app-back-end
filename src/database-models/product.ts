@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { Unit } from '../types/enums/unit.enum';
 import { ProductDataModelInterface } from './interfaces/product.model.interface';
+import ProductOffer from './product-offer';
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -28,6 +29,12 @@ const productSchema = new mongoose.Schema({
   }
 }, {
   timestamps: true
+});
+
+productSchema.pre('remove', async function (next) {
+  await ProductOffer.deleteMany({shop: this._id});
+
+  next();
 });
 
 productSchema.virtual('offers', {
