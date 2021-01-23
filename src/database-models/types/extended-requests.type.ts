@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import { ProductOffer } from '../../types/interfaces/product-offer.interface';
 import { Token } from '../../types/interfaces/token';
 import { ProductDataModelInterface } from '../interfaces/product.model.interface';
 import { ShopDataModelInterface } from '../interfaces/shop.model.interface';
@@ -10,6 +11,7 @@ interface ExtendedData {
     token?: Token;
     shop?: ShopDataModelInterface;
     product?: ProductDataModelInterface;
+    productOffer?: ProductOffer;
   };
 }
 

@@ -5,14 +5,14 @@ import { ExtendedRequestType } from '../../database-models/types/extended-reques
 export class ProductAuthorizationService {
   static async autorizateProduct(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      request = await ProductAuthorizationService.extendRequestWithProperProduct(request);
+      request = await ProductAuthorizationService.extendRequestWithProperData(request);
       next();
     } catch (error) {
       response.status(404).send({error: 'Product not found'});
     }
   }
 
-  static async extendRequestWithProperProduct(request: ExtendedRequestType): Promise<ExtendedRequestType> {
+  static async extendRequestWithProperData(request: ExtendedRequestType): Promise<ExtendedRequestType> {
     const productId = request.params.productId || request.query.productId;
 
     if (!request.extendedData?.user || !productId) {

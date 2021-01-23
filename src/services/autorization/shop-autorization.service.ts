@@ -5,14 +5,14 @@ import { ExtendedRequestType } from '../../database-models/types/extended-reques
 export class ShopAuthorizationService {
   static async autorizateShop(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      request = await ShopAuthorizationService.extendRequestWithProperProduct(request);
+      request = await ShopAuthorizationService.extendRequestWithProperData(request);
       next();
     } catch (error) {
       response.status(404).send({error: 'Shop not found'});
     }
   }
 
-  static async extendRequestWithProperProduct(request: ExtendedRequestType): Promise<ExtendedRequestType> {
+  static async extendRequestWithProperData(request: ExtendedRequestType): Promise<ExtendedRequestType> {
     const shopId = request.params.shopId || request.query.shopId;
 
     if (!request.extendedData?.user || !shopId) {
