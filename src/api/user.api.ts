@@ -1,13 +1,7 @@
 import {Router, Response, Request} from 'express';
-import { Model } from 'mongoose';
-import { UserDataModelIdexableInterface } from '../database-models/interfaces/user-data.model.interface';
-import Meal from '../database-models/meal';
-import Person from '../database-models/person';
-import Product from '../database-models/product';
-import Shop from '../database-models/shop';
-import ShoppingList from '../database-models/shopping-list';
-import { ExtendedRequestType } from '../database-models/types/extended-requests.type';
-import UserModel from '../database-models/user';
+import { UserDataModelIdexableInterface } from '../database/interfaces/user-data.model.interface';
+import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import UserModel from '../database/models/user';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 
 const router = Router();

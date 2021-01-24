@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
-import ProductOffer from '../../database-models/product-offer';
-import { ExtendedRequestType } from '../../database-models/types/extended-requests.type';
+import ProductOffer from '../../database/models/product-offer';
+import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 import { ProductAuthorizationService } from './product-autorization.service';
 import { ShopAuthorizationService } from './shop-autorization.service';
 
