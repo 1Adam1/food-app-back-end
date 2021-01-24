@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Currency } from '../types/enums/currency.enum';
+import { Currency } from '../../types/enums/currency.enum';
 
 const shoppingListSchema = new mongoose.Schema({
   items: [

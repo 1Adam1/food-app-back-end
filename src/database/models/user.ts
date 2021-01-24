@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import { AuthenticationService } from '../services/authentication/authentication.service';
-import { PasswordHashingService } from '../services/authentication/password-hashing.service';
-import { Token } from '../types/interfaces/token';
-import { UserData } from '../types/interfaces/user-data.interface';
-import { UserDataModelInterface, UserDataStaticModelInterface } from './interfaces/user-data.model.interface';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { PasswordHashingService } from '../../services/authentication/password-hashing.service';
+import { Token } from '../../types/interfaces/token';
+import { UserData } from '../../types/interfaces/user-data.interface';
+import { UserDataModelInterface, UserDataStaticModelInterface } from '../interfaces/user-data.model.interface';
 import Meal from './meal';
 import Person from './person';
 import Product from './product';

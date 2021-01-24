@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { Unit } from '../types/enums/unit.enum';
-import { ProductDataModelInterface } from './interfaces/product.model.interface';
+import { Unit } from '../../types/enums/unit.enum';
+import { ProductDataModelInterface } from '../interfaces/product.model.interface';
 import ProductOffer from './product-offer';
 
 const productSchema = new mongoose.Schema({

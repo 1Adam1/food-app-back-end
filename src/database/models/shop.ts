@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { ShopDataModelInterface } from './interfaces/shop.model.interface';
+import { ShopDataModelInterface } from '../interfaces/shop.model.interface';
 import ProductOffer from './product-offer';
 
 const shopSchema = new mongoose.Schema({

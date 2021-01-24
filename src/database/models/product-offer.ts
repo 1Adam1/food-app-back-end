@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { Currency } from '../types/enums/currency.enum';
-import { ProductOfferDataModelInterface } from './interfaces/product-offer.model.interface';
+import { Currency } from '../../types/enums/currency.enum';
+import { ProductOfferDataModelInterface } from '../interfaces/product-offer.model.interface';
 
 const productOfferSchema = new mongoose.Schema({
   name: {
