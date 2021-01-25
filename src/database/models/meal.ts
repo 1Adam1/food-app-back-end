@@ -59,7 +59,7 @@ const mealSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  mainteiner: {
+  maintainer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
@@ -67,6 +67,15 @@ const mealSchema = new mongoose.Schema({
 },{
   timestamps: true
 });
+
+mealSchema.methods.toJSON = function() {
+  const mealObject = this.toObject() as any;
+  const fieldsToDelete = ['maintainer', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete mealObject[field]);
+
+  return mealObject;
+};
 
 const Meal = mongoose.model('Meal', mealSchema);
 export default Meal;

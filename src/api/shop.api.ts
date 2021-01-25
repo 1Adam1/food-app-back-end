@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
-import { ShopDataModelIdexableInterface } from '../database-models/interfaces/shop.model.interface';
-import Shop from '../database-models/shop';
-import { ExtendedRequestType } from '../database-models/types/extended-requests.type';
+import { ShopDataModelIdexableInterface } from '../database/interfaces/shop.model.interface';
+import Shop from '../database/models/shop';
+import { ExtendedRequestType } from '../database/types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { ShopAuthorizationService } from '../services/autorization/shop-autorization.service';
 

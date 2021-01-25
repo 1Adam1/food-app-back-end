@@ -14,7 +14,8 @@ interface ExtendedData {
     product?: ProductDataModelInterface;
     productOffer?: ProductOfferDataModelInterface;
     meal?: MealDataModelInterface;
-  };
+    mealsProducts?: ProductDataModelInterface[];
+  }; 
 }
 
 export type ExtendedRequestType = ExtendedData & Request;
