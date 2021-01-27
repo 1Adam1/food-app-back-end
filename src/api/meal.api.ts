@@ -76,7 +76,7 @@ router.patch('/meals/:mealId',
       bodyFieldKeys.forEach(key => (request.extendedData!.meal as MealDataModelIdexableInterface)[key] = request.body[key]);
 
       const extendedIngredients = extendIngrediensWithProductData(request.extendedData!.meal!.ingredients, request.extendedData!.mealsProducts!);
-      request.extendedData!.meal!.totalKilocalories = KilocaloriesCounterService.count(request.extendedData!.meal!.ingredients);
+      request.extendedData!.meal!.totalKilocalories = KilocaloriesCounterService.count(extendedIngredients);
 
       await request.extendedData!.meal!.save();
   

@@ -5,6 +5,7 @@ import { MealDataModelInterface } from '../interfaces/meal.model.interface';
 import { ProductOfferDataModelInterface } from '../interfaces/product-offer.model.interface';
 import { ProductDataModelInterface } from '../interfaces/product.model.interface';
 import { ShopDataModelInterface } from '../interfaces/shop.model.interface';
+import { ShoppingListDataModelInterface } from '../interfaces/shopping-list.model.interface';
 import { UserDataModelInterface } from '../interfaces/user-data.model.interface';
 
 interface ExtendedData {
@@ -16,7 +17,8 @@ interface ExtendedData {
     productOffer?: ProductOfferDataModelInterface;
     meal?: MealDataModelInterface;
     mealsProducts?: ProductDataModelInterface[];
-    shoppingList?: ShoppingList;
+    shoppingList?: ShoppingListDataModelInterface;
+    shoppingListItems?: ProductOfferDataModelInterface[];
   }; 
 }
 
