@@ -49,9 +49,6 @@ export class ShoppingListAuthorizationService {
     const items = request.body.items;
     const user = request.extendedData!.user;
     const productOffers = [];
-
-    console.log('1', items);
-    console.log('2', user);
     
     if (!user || !items) {
       throw new Error();
@@ -59,10 +56,8 @@ export class ShoppingListAuthorizationService {
 
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      console.log('test');
       const productOffer = await ProductOffer.findOne({_id: item.item}) as ProductOfferDataModelIdexableInterface;
 
-      console.log('3', productOffer);
       if (!productOffer) {
         throw new Error();
       }
@@ -70,8 +65,6 @@ export class ShoppingListAuthorizationService {
       const shop = await Shop.findOne({_id: productOffer.shop, maintainer: user._id});
       const product = await Product.findOne({_id: productOffer.product, maintainer: user._id});
 
-      console.log('4', shop);
-      console.log('5', product);
       if (!shop || !product) {
         throw new Error();
       }

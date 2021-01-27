@@ -14,18 +14,11 @@ const shoppingListSchema = new mongoose.Schema({
   date: {
     type: Date
   },
-  totalAmount: {
-    value: {
-      type: Number,
-      required: true,
-      min: 0
-    },
-    currency: {
-      type: Currency,
-      required: true
-    }
+  description: {
+    type: String,
+    trim: true
   },
-  partialAmount: {
+  totalPrice: {
     value: {
       type: Number,
       required: true,

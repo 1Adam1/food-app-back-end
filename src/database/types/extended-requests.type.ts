@@ -1,5 +1,4 @@
 import { Request } from 'express';
-import { ShoppingList } from '../../types/interfaces/shopping-list.interface';
 import { Token } from '../../types/interfaces/token';
 import { MealDataModelInterface } from '../interfaces/meal.model.interface';
 import { ProductOfferDataModelInterface } from '../interfaces/product-offer.model.interface';
