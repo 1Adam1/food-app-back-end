@@ -36,5 +36,14 @@ personSchema.virtual('profiles', {
   foreignField: 'person'
 });
 
+personSchema.methods.toJSON = function() {
+  const personObject = this.toObject() as any;
+  const fieldsToDelete = ['maintainer', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete personObject[field]);
+
+  return personObject;
+};
+
 const Person = mongoose.model('Person', personSchema);
 export default Person;

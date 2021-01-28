@@ -3,7 +3,7 @@ import { MealDataModelIdexableInterface } from '../database/interfaces/meal.mode
 import Meal from '../database/models/meal';
 import { ExtendedRequestType } from '../database/types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
-import { MealAuthorizationService } from '../services/autorization/meal-authorization';
+import { MealAuthorizationService } from '../services/autorization/meal-authorization.service';
 import { KilocaloriesCounterService } from '../services/core/kilocalories-counter.service';
 import { Ingredient } from '../types/interfaces/ingredient.interface';
 import { ProductDataModelInterface } from '../database/interfaces/product.model.interface';

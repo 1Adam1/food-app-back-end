@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-userSchema.virtual('people', {
+userSchema.virtual('persons', {
   ref: 'Person',
   localField: '_id',
   foreignField: 'maintainer'

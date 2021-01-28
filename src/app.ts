@@ -6,6 +6,7 @@ import productRouter from './api/product.api';
 import productOfferRouter from './api/product-offer.api';
 import mealRouter from './api/meal.api';
 import shoppingListRouter from './api/shopping-list.api';
+import personRouter from './api/person.api';
 
 DatabaseLoader.load();
 
@@ -19,6 +20,7 @@ app.use(productRouter);
 app.use(productOfferRouter);
 app.use(mealRouter);
 app.use(shoppingListRouter);
+app.use(personRouter);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);

@@ -118,8 +118,8 @@ router.get('/users/me/products', AuthenticationService.authenticateUser, async (
   await getAllModelDataMaintainedByUser('products', request, response);
 });
 
-router.get('/users/me/people', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
-  await getAllModelDataMaintainedByUser('people', request, response);
+router.get('/users/me/persons', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
+  await getAllModelDataMaintainedByUser('persons', request, response);
 });
 
 router.get('/users/me/meals', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
