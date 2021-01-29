@@ -13,7 +13,7 @@ export class PersonAuthorizationService {
   }
 
   static async extendRequestWithProperData(request: ExtendedRequestType): Promise<ExtendedRequestType> {
-    const personId = request.params.personId || request.query.personId || request.body.personId;
+    const personId = request.params.personId || request.query.personId;
     
     if (!request.extendedData?.user || !personId) {
       throw new Error();

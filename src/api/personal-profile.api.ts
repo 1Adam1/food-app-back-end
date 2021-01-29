@@ -8,13 +8,13 @@ import { PersonalProfileAuthorizationService } from '../services/autorization/pe
 
 const router = Router();
 
-router.post('/personal-profiles', 
+router.post('/persons/:personId/profiles', 
   AuthenticationService.authenticateUser,
   PersonAuthorizationService.authorizatePerson,
   async (request: ExtendedRequestType, response: Response) => 
   {
     try {
-      const personId = request.body.personId;
+      const personId = request.extendedData!.person!._id;
       const extendedBody = { ...request.body, person: personId };
 
       const personalProflie = new PersonalProfile(extendedBody);
@@ -27,8 +27,9 @@ router.post('/personal-profiles',
   }
 );
 
-router.get('/personal-profiles/:personalProfileId',
+router.get('/persons/:personId/profiles/:personalProfileId',
   AuthenticationService.authenticateUser,
+  PersonAuthorizationService.authorizatePerson,
   PersonalProfileAuthorizationService.authorizatePersonalProfile,
   async (request: ExtendedRequestType, response: Response) => {
     try {
@@ -39,8 +40,9 @@ router.get('/personal-profiles/:personalProfileId',
   }
 );
 
-router.patch('personal-profiles/:personalProfileId',
+router.patch('/persons/:personId/profiles/:personalProfileId',
   AuthenticationService.authenticateUser,
+  PersonAuthorizationService.authorizatePerson,
   PersonalProfileAuthorizationService.authorizatePersonalProfile,
   async (request: ExtendedRequestType, response: Response) => {
     const allowedFieldsKeys = ['name', 'description', 'dailyKilocalorieIntake'];
@@ -62,8 +64,9 @@ router.patch('personal-profiles/:personalProfileId',
   }
 );
 
-router.delete('personal-profiles/:personalProfileId',
+router.delete('/persons/:personId/profiles/:personalProfileId',
   AuthenticationService.authenticateUser,
+  PersonAuthorizationService.authorizatePerson,
   PersonalProfileAuthorizationService.authorizatePersonalProfile,
   async (request: ExtendedRequestType, response: Response) => {
     try {
@@ -71,6 +74,22 @@ router.delete('personal-profiles/:personalProfileId',
       response.send();
     } catch (error) {
       response.status(500).send();
+    }
+  }
+);
+
+router.get('/persons/:personId/profiles',
+  AuthenticationService.authenticateUser,
+  PersonAuthorizationService.authorizatePerson,
+  async (request: ExtendedRequestType, response: Response) => 
+  {
+    try {
+      const person = request.extendedData!.person;
+      const result = await person!.populate({path: 'profiles'}).execPopulate();
+      const profiles = result.profiles;
+      response.send(profiles);
+    } catch (error) {
+      response.status(400).send(error);
     }
   }
 );

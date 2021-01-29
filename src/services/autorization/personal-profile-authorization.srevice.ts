@@ -20,8 +20,7 @@ export class PersonalProfileAuthorizationService {
       throw new Error();
     }
 
-    const maintainer = request.extendedData.user._id.toString();
-    const personalProfile = await PersonalProfile.findOne({_id: personalProfileId, maintainer, person});
+    const personalProfile = await PersonalProfile.findOne({_id: personalProfileId, person: person._id});
     
     if (!personalProfile) {
       throw new Error();

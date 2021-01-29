@@ -74,19 +74,4 @@ router.delete('/persons/:personId',
   }
 );
 
-router.get('/persons/:personId/profiles',
-  AuthenticationService.authenticateUser,
-  PersonAuthorizationService.authorizatePerson,
-  async (request: ExtendedRequestType, response: Response) => 
-  {
-    try {
-      const person = request.extendedData!.person;
-      const results = await person!.populate({path: 'profiles'}).execPopulate();
-      response.send(results);
-    } catch (error) {
-      response.status(400).send(error);
-    }
-  }
-);
-
 export default router;
