@@ -31,7 +31,7 @@ router.post('/shopping-lists',
 
 router.get('/shopping-lists/:shoppingListId',
   AuthenticationService.authenticateUser,
-  ShoppingListAuthorizationService.autorizateShoppingList,
+  ShoppingListAuthorizationService.authorizateShoppingList,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       response.send(request.extendedData!.shoppingList);
@@ -43,7 +43,7 @@ router.get('/shopping-lists/:shoppingListId',
 
 router.patch('/shopping-lists/:shoppingListId',
   AuthenticationService.authenticateUser,
-  ShoppingListAuthorizationService.autorizateShoppingList,
+  ShoppingListAuthorizationService.authorizateShoppingList,
   ShoppingListAuthorizationService.authorizeShoppingListsItems,
   async (request: ExtendedRequestType, response: Response) => {
     const allowedFieldsKeys = ['date', 'description', 'items'];
@@ -68,7 +68,7 @@ router.patch('/shopping-lists/:shoppingListId',
 
 router.delete('/shopping-lists/:shoppingListId',
   AuthenticationService.authenticateUser,
-  ShoppingListAuthorizationService.autorizateShoppingList,
+  ShoppingListAuthorizationService.authorizateShoppingList,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       await request.extendedData!.shoppingList!.remove();

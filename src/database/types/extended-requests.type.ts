@@ -2,6 +2,7 @@ import { Request } from 'express';
 import { Token } from '../../types/interfaces/token';
 import { MealDataModelInterface } from '../interfaces/meal.model.interface';
 import { PersonDataModelInterface } from '../interfaces/person.model.inteface';
+import { PersonalProflieDataModelInterface } from '../interfaces/personal-profile.interface';
 import { ProductOfferDataModelInterface } from '../interfaces/product-offer.model.interface';
 import { ProductDataModelInterface } from '../interfaces/product.model.interface';
 import { ShopDataModelInterface } from '../interfaces/shop.model.interface';
@@ -20,6 +21,7 @@ interface ExtendedData {
     shoppingList?: ShoppingListDataModelInterface;
     shoppingListItems?: ProductOfferDataModelInterface[];
     person?: PersonDataModelInterface;
+    personalProfile?: PersonalProflieDataModelInterface;
   }; 
 }
 

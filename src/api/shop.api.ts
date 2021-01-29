@@ -23,7 +23,7 @@ router.post('/shops', AuthenticationService.authenticateUser, async (request: Ex
 
 router.get('/shops/:shopId',
   AuthenticationService.authenticateUser,
-  ShopAuthorizationService.autorizateShop,
+  ShopAuthorizationService.authorizateShop,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       response.send(request.extendedData!.shop);
@@ -35,7 +35,7 @@ router.get('/shops/:shopId',
 
 router.patch('/shops/:shopId',
   AuthenticationService.authenticateUser,
-  ShopAuthorizationService.autorizateShop,
+  ShopAuthorizationService.authorizateShop,
   async (request: ExtendedRequestType, response: Response) => {
     const allowedFieldsKeys = ['name', 'description'];
     const bodyFieldKeys = Object.keys(request.body);
@@ -58,7 +58,7 @@ router.patch('/shops/:shopId',
 
 router.delete('/shops/:shopId',
   AuthenticationService.authenticateUser,
-  ShopAuthorizationService.autorizateShop,
+  ShopAuthorizationService.authorizateShop,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       await request.extendedData!.shop!.remove();
@@ -71,7 +71,7 @@ router.delete('/shops/:shopId',
 
 router.get('/shops/:shopId/offers', 
   AuthenticationService.authenticateUser,
-  ShopAuthorizationService.autorizateShop,
+  ShopAuthorizationService.authorizateShop,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       const shop = request.extendedData!.shop;

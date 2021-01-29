@@ -5,7 +5,7 @@ import Product from '../../database/models/product';
 import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 
 export class MealAuthorizationService {
-  static async autorizateMeal(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizateMeal(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       request = await MealAuthorizationService.extendRequestWithProperData(request);
       next();

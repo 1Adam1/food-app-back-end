@@ -3,7 +3,7 @@ import Product from '../../database/models/product';
 import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 
 export class ProductAuthorizationService {
-  static async autorizateProduct(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizateProduct(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       request = await ProductAuthorizationService.extendRequestWithProperData(request);
       next();

@@ -5,7 +5,7 @@ import { ProductAuthorizationService } from './product-autorization.service';
 import { ShopAuthorizationService } from './shop-autorization.service';
 
 export class ProductOfferAuthorizationService {
-  static async autorizateProductOffer(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizateProductOffer(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       request = await ProductOfferAuthorizationService.extendRequestWithProperData(request);
       next();

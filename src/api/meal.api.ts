@@ -48,7 +48,7 @@ const extendIngrediensWithProductData = (ingredientsWithProductsIds: Ingredient[
 
 router.get('/meals/:mealId',
   AuthenticationService.authenticateUser,
-  MealAuthorizationService.autorizateMeal,
+  MealAuthorizationService.authorizateMeal,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       response.send(request.extendedData!.meal);
@@ -60,7 +60,7 @@ router.get('/meals/:mealId',
 
 router.patch('/meals/:mealId',
   AuthenticationService.authenticateUser,
-  MealAuthorizationService.autorizateMeal,
+  MealAuthorizationService.authorizateMeal,
   MealAuthorizationService.authorizeMealsProducts,
   async (request: ExtendedRequestType, response: Response) => {
     const allowedFieldsKeys = ['name', 'description', 'recipe', 'ingredients'];
@@ -89,7 +89,7 @@ router.patch('/meals/:mealId',
 
 router.delete('/meals/:mealId',
   AuthenticationService.authenticateUser,
-  MealAuthorizationService.autorizateMeal,
+  MealAuthorizationService.authorizateMeal,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       await request.extendedData!.meal!.remove();

@@ -7,7 +7,7 @@ import ShoppingList from '../../database/models/shopping-list';
 import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 
 export class ShoppingListAuthorizationService {
-  static async autorizateShoppingList(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizateShoppingList(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       request = await ShoppingListAuthorizationService.extendRequestWithProperData(request);
       next();
@@ -40,7 +40,6 @@ export class ShoppingListAuthorizationService {
       request = await ShoppingListAuthorizationService.extendShoppingListRequestWithProperItems(request);
       next();
     } catch (error) {
-      console.log(error);
       response.status(404).send({error: 'Product offer not found'});
     }
   }

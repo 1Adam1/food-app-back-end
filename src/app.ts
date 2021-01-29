@@ -7,6 +7,7 @@ import productOfferRouter from './api/product-offer.api';
 import mealRouter from './api/meal.api';
 import shoppingListRouter from './api/shopping-list.api';
 import personRouter from './api/person.api';
+import personalProfileRouter from './api/personal-profile.api';
 
 DatabaseLoader.load();
 
@@ -21,6 +22,7 @@ app.use(productOfferRouter);
 app.use(mealRouter);
 app.use(shoppingListRouter);
 app.use(personRouter);
+app.use(personalProfileRouter);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);

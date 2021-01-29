@@ -36,5 +36,14 @@ personalProfileSchema.virtual('dietPlan', {
   foreignField: 'profile'
 });
 
+personalProfileSchema.methods.toJSON = function() {
+  const personalProfileObject = this.toObject() as any;
+  const fieldsToDelete = ['createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete personalProfileObject[field]);
+
+  return personalProfileObject;
+};
+
 const PersonalProfile = mongoose.model('PersonalProfile', personalProfileSchema);
 export default PersonalProfile;

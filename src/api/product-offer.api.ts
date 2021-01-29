@@ -11,8 +11,8 @@ const router = Router();
 
 router.post('/product-offers', 
     AuthenticationService.authenticateUser,
-    ShopAuthorizationService.autorizateShop,
-    ProductAuthorizationService.autorizateProduct,
+    ShopAuthorizationService.authorizateShop,
+    ProductAuthorizationService.authorizateProduct,
     async (request: ExtendedRequestType, response: Response) => {
   try {
     const shop = request.extendedData!.shop!._id;
@@ -30,7 +30,7 @@ router.post('/product-offers',
 
 router.get('/product-offers/:productOfferId',
   AuthenticationService.authenticateUser,
-  ProductOfferAuthorizationService.autorizateProductOffer,
+  ProductOfferAuthorizationService.authorizateProductOffer,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       response.send(request.extendedData!.productOffer);
@@ -42,7 +42,7 @@ router.get('/product-offers/:productOfferId',
 
 router.patch('/product-offers/:productOfferId',
   AuthenticationService.authenticateUser,
-  ProductOfferAuthorizationService.autorizateProductOffer,
+  ProductOfferAuthorizationService.authorizateProductOffer,
   async (request: ExtendedRequestType, response: Response) => {
     const allowedFieldsKeys = ['name', 'description'];
     const bodyFieldKeys = Object.keys(request.body);
@@ -65,7 +65,7 @@ router.patch('/product-offers/:productOfferId',
 
 router.delete('/product-offers/:productOfferId',
   AuthenticationService.authenticateUser,
-  ProductOfferAuthorizationService.autorizateProductOffer,
+  ProductOfferAuthorizationService.authorizateProductOffer,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       await request.extendedData!.productOffer!.remove();

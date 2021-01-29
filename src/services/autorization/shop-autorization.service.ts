@@ -3,7 +3,7 @@ import Shop from '../../database/models/shop';
 import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 
 export class ShopAuthorizationService {
-  static async autorizateShop(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizateShop(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       request = await ShopAuthorizationService.extendRequestWithProperData(request);
       next();

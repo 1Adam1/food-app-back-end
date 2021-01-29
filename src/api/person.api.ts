@@ -27,7 +27,7 @@ router.post('/persons',
 
 router.get('/persons/:personId',
   AuthenticationService.authenticateUser,
-  PersonAuthorizationService.autorizatePerson,
+  PersonAuthorizationService.authorizatePerson,
   async (request: ExtendedRequestType, response: Response) => 
   {
     try {
@@ -40,7 +40,7 @@ router.get('/persons/:personId',
 
 router.patch('/persons/:personId',
   AuthenticationService.authenticateUser,
-  PersonAuthorizationService.autorizatePerson,
+  PersonAuthorizationService.authorizatePerson,
   async (request: ExtendedRequestType, response: Response) => {
     const allowedFieldsKeys = ['name', 'surname', 'dateOfBirth', 'gender', 'description'];
     const bodyFieldKeys = Object.keys(request.body);
@@ -63,7 +63,7 @@ router.patch('/persons/:personId',
 
 router.delete('/persons/:personId',
   AuthenticationService.authenticateUser,
-  PersonAuthorizationService.autorizatePerson,
+  PersonAuthorizationService.authorizatePerson,
   async (request: ExtendedRequestType, response: Response) => {
     try {
       await request.extendedData!.person!.remove();
@@ -76,7 +76,7 @@ router.delete('/persons/:personId',
 
 router.get('/persons/:personId/profiles',
   AuthenticationService.authenticateUser,
-  PersonAuthorizationService.autorizatePerson,
+  PersonAuthorizationService.authorizatePerson,
   async (request: ExtendedRequestType, response: Response) => 
   {
     try {

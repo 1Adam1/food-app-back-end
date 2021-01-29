@@ -3,7 +3,7 @@ import Person from '../../database/models/person';
 import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 
 export class PersonAuthorizationService {
-  static async autorizatePerson(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizatePerson(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
       request = await PersonAuthorizationService.extendRequestWithProperData(request);
       next();
@@ -13,7 +13,7 @@ export class PersonAuthorizationService {
   }
 
   static async extendRequestWithProperData(request: ExtendedRequestType): Promise<ExtendedRequestType> {
-    const personId = request.params.personId || request.query.personId;
+    const personId = request.params.personId || request.query.personId || request.body.personId;
     
     if (!request.extendedData?.user || !personId) {
       throw new Error();
