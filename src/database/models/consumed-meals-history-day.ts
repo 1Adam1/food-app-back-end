@@ -35,11 +35,6 @@ const consumedMealsHistoryDaySchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  expectedKilocaloriesConsumption: {
-    type: Number,
-    required: true,
-    min: 0
-  },
   plan: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'PersonalProfile',

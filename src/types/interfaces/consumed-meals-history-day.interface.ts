@@ -4,5 +4,4 @@ export interface ConsumedMealsHistoryDay {
   date: Date; 
   mealTimes: MealTime[];
   totalKilocaloriesConsumption: number;
-  expectedKilocaloriesConsumption: number;
 }
