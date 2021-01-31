@@ -35,7 +35,7 @@ const dietPlanDaySchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  plan: {
+  profile: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'PersonalProfile',
     required: true

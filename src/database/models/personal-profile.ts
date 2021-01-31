@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import ConsumedMealsHistoryDay from './consumed-meals-history-day';
+import DietPlanDay from './diet-plan-day';
 
 const personalProfileSchema = new mongoose.Schema({
   name: {
@@ -44,6 +46,13 @@ personalProfileSchema.methods.toJSON = function() {
 
   return personalProfileObject;
 };
+
+personalProfileSchema.pre('remove', async function (next) {
+  await ConsumedMealsHistoryDay.deleteMany({profile: this._id});
+  await DietPlanDay.deleteMany({profile: this._id});
+
+  next();
+});
 
 const PersonalProfile = mongoose.model('PersonalProfile', personalProfileSchema);
 export default PersonalProfile;
