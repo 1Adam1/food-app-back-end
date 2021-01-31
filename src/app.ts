@@ -9,6 +9,7 @@ import shoppingListRouter from './api/shopping-list.api';
 import personRouter from './api/person.api';
 import personalProfileRouter from './api/personal-profile.api';
 import consumedMealsHistoryDay from './api/consumed-meals-history-day.api';
+import dietPlanDayRouter from './api/diet-plan-day.api';
 
 DatabaseLoader.load();
 
@@ -25,6 +26,7 @@ app.use(shoppingListRouter);
 app.use(personRouter);
 app.use(personalProfileRouter);
 app.use(consumedMealsHistoryDay);
+app.use(dietPlanDayRouter);
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
