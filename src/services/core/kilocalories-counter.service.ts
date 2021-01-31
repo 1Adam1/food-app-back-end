@@ -1,4 +1,3 @@
-import Product from "../../database/models/product";
 import { Ingredient } from "../../types/interfaces/ingredient.interface";
 import { MealTime } from "../../types/interfaces/meal-time.interface";
 
@@ -14,6 +13,12 @@ export class KilocaloriesCounterService {
   }
 
   static countForMealTimes(mealTimes: MealTime[]) {
-    return 0;
+    let sum = 0;
+    
+    mealTimes.forEach(mealTime => {
+      sum += mealTime.portion.meal.totalKilocalories * (mealTime.portion.percentSize / 100);
+    });
+    
+    return sum;
   }
 }
