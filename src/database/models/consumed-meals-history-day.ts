@@ -44,12 +44,12 @@ const consumedMealsHistoryDaySchema = new mongoose.Schema({
 });
 
 consumedMealsHistoryDaySchema.methods.toJSON = function() {
-  const consumedMealsHistoryDayProfileObject = this.toObject() as any;
+  const consumedMealsHistoryDayObject = this.toObject() as any;
   const fieldsToDelete = ['createdAt', 'updatedAt', '__v'];
 
-  fieldsToDelete.forEach(field => delete consumedMealsHistoryDayProfileObject[field]);
+  fieldsToDelete.forEach(field => delete consumedMealsHistoryDayObject[field]);
 
-  return consumedMealsHistoryDayProfileObject;
+  return consumedMealsHistoryDayObject;
 };
 
 const ConsumedMealsHistoryDay = mongoose.model('ConsumedMealsHistoryDay', consumedMealsHistoryDaySchema);

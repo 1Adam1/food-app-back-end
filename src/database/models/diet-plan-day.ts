@@ -25,8 +25,7 @@ const dietPlanDaySchema = new mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Meal',
           required: true
-        },
-        required: true
+        }
       }
     }
   ],
@@ -43,6 +42,16 @@ const dietPlanDaySchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
+
+dietPlanDaySchema.methods.toJSON = function() {
+  const dietPlanDayObject = this.toObject() as any;
+  const fieldsToDelete = ['createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete dietPlanDayObject[field]);
+
+  return dietPlanDayObject;
+};
+
 
 const DietPlanDay = mongoose.model('DietPlanDay', dietPlanDaySchema);
 export default DietPlanDay;

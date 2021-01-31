@@ -49,7 +49,7 @@ personalProfileSchema.methods.toJSON = function() {
 
 personalProfileSchema.pre('remove', async function (next) {
   await ConsumedMealsHistoryDay.deleteMany({profile: this._id});
-  // await DietPlanDay.deleteMany({profile: this._id});
+  await DietPlanDay.deleteMany({profile: this._id});
 
   next();
 });

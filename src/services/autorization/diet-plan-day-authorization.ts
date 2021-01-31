@@ -4,10 +4,10 @@ import DietPlanDay from '../../database/models/diet-plan-day';
 import Meal from '../../database/models/meal';
 import { ExtendedRequestType } from '../../database/types/extended-requests.type';
 
-export class ConsumedMealsHistoryDayAuthorizationService {
-  static async authorizateHistoryDay(request: ExtendedRequestType, response: Response, next: NextFunction) {
+export class DietPlanDayAuthorizationService {
+  static async authorizatePlanDay(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      request = await ConsumedMealsHistoryDayAuthorizationService.extendRequestWithProperData(request);
+      request = await DietPlanDayAuthorizationService.extendRequestWithProperData(request);
       next();
     } catch (error) {
       response.status(404).send({error: 'Day not found'});
@@ -32,9 +32,9 @@ export class ConsumedMealsHistoryDayAuthorizationService {
     return request;
   }
 
-  static async authorizeConsumedMeals(request: ExtendedRequestType, response: Response, next: NextFunction) {
+  static async authorizeMealsToConsume(request: ExtendedRequestType, response: Response, next: NextFunction) {
     try {
-      request = await ConsumedMealsHistoryDayAuthorizationService.extendPlanDayWithdMealsToConsume(request);
+      request = await DietPlanDayAuthorizationService.extendPlanDayWithdMealsToConsume(request);
       next();
     } catch (error) {
       response.status(404).send({error: 'Meal not found'});
