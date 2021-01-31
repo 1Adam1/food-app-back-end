@@ -22,7 +22,7 @@ router.post('/shopping-lists',
       const shoppingList = new ShoppingList(extendedBody);
       await shoppingList.save();
 
-      response.status(201).send(shoppingList.toJSON());
+      response.status(201).send(shoppingList);
     } catch (error) {
       response.status(400).send(error);
     }

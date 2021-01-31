@@ -20,7 +20,7 @@ router.post('/meals',
       const extendedBody = { ...request.body, maintainer };
       const extendedIngredients = extendIngrediensWithProductData(extendedBody.ingredients, request.extendedData!.mealsProducts!);
       
-      extendedBody.totalKilocalories = KilocaloriesCounterService.count(extendedIngredients);
+      extendedBody.totalKilocalories = KilocaloriesCounterService.countForIngredients(extendedIngredients);
       
       const meal = new Meal(extendedBody);
       await meal.save();
@@ -76,7 +76,7 @@ router.patch('/meals/:mealId',
       bodyFieldKeys.forEach(key => (request.extendedData!.meal as MealDataModelIdexableInterface)[key] = request.body[key]);
 
       const extendedIngredients = extendIngrediensWithProductData(request.extendedData!.meal!.ingredients, request.extendedData!.mealsProducts!);
-      request.extendedData!.meal!.totalKilocalories = KilocaloriesCounterService.count(extendedIngredients);
+      request.extendedData!.meal!.totalKilocalories = KilocaloriesCounterService.countForIngredients(extendedIngredients);
 
       await request.extendedData!.meal!.save();
   

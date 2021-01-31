@@ -1,9 +1,9 @@
 import { Document } from 'mongoose';
 import { ConsumedMealsHistoryDay } from '../../types/interfaces/consumed-meals-history-day.interface';
 
-export interface ConsumedMealsHistoryDataModelInterface extends Document, ConsumedMealsHistoryDay {
+export interface ConsumedMealsHistoryDayDataModelInterface extends Document, ConsumedMealsHistoryDay {
 }
 
-export interface MealDataModelIdexableInterface extends ConsumedMealsHistoryDataModelInterface {
+export interface ConsumedMealsHistoryDayDataModelIndexableInterface extends ConsumedMealsHistoryDayDataModelInterface {
   [key: string]: any;
 }

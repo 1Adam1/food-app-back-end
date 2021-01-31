@@ -1,8 +1,9 @@
 import Product from "../../database/models/product";
 import { Ingredient } from "../../types/interfaces/ingredient.interface";
+import { MealTime } from "../../types/interfaces/meal-time.interface";
 
 export class KilocaloriesCounterService {
-  static count(ingredients: Ingredient[]) {
+  static countForIngredients(ingredients: Ingredient[]) {
     let sum = 0;
     
     ingredients.forEach(ingredient => {
@@ -10,5 +11,9 @@ export class KilocaloriesCounterService {
     });
     
     return sum;
+  }
+
+  static countForMealTimes(mealTimes: MealTime[]) {
+    return 0;
   }
 }

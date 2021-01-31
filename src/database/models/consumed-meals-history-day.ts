@@ -25,8 +25,7 @@ const consumedMealsHistoryDaySchema = new mongoose.Schema({
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Meal',
           required: true
-        },
-        required: true
+        }
       }
     }
   ],
@@ -35,7 +34,7 @@ const consumedMealsHistoryDaySchema = new mongoose.Schema({
     required: true,
     min: 0
   },
-  plan: {
+  profile: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'PersonalProfile',
     required: true
@@ -43,6 +42,15 @@ const consumedMealsHistoryDaySchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
+
+consumedMealsHistoryDaySchema.methods.toJSON = function() {
+  const consumedMealsHistoryDayProfileObject = this.toObject() as any;
+  const fieldsToDelete = ['createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete consumedMealsHistoryDayProfileObject[field]);
+
+  return consumedMealsHistoryDayProfileObject;
+};
 
 const ConsumedMealsHistoryDay = mongoose.model('ConsumedMealsHistoryDay', consumedMealsHistoryDaySchema);
 export default ConsumedMealsHistoryDay;

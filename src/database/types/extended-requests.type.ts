@@ -1,6 +1,6 @@
 import { Request } from 'express';
-import { ConsumedMealsHistoryDay } from '../../types/interfaces/consumed-meals-history-day.interface';
 import { Token } from '../../types/interfaces/token';
+import { ConsumedMealsHistoryDayDataModelInterface } from '../interfaces/consumed-meals-history-day.interface';
 import { MealDataModelInterface } from '../interfaces/meal.model.interface';
 import { PersonDataModelInterface } from '../interfaces/person.model.inteface';
 import { PersonalProflieDataModelInterface } from '../interfaces/personal-profile.interface';
@@ -23,8 +23,9 @@ interface ExtendedData {
     shoppingListItems?: ProductOfferDataModelInterface[];
     person?: PersonDataModelInterface;
     personalProfile?: PersonalProflieDataModelInterface;
-    consumedMealsHistoryDay?: ConsumedMealsHistoryDay;
-    consumedMealsHistoryDays?: ConsumedMealsHistoryDay[];
+    consumedMealsHistoryDay?: ConsumedMealsHistoryDayDataModelInterface;
+    consumedMeals?: MealDataModelInterface[];
+    consumedMealsHistoryDays?: ConsumedMealsHistoryDayDataModelInterface[];
   }; 
 }
 

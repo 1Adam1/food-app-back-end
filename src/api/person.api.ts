@@ -18,7 +18,7 @@ router.post('/persons',
       const person = new Person(extendedBody);
       await person.save();
 
-      response.status(201).send(person.toJSON());
+      response.status(201).send(person);
     } catch (error) {
       response.status(400).send(error);
     }

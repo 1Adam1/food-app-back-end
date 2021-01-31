@@ -8,7 +8,7 @@ import mealRouter from './api/meal.api';
 import shoppingListRouter from './api/shopping-list.api';
 import personRouter from './api/person.api';
 import personalProfileRouter from './api/personal-profile.api';
-import consumedMealsHistoryDay from './api/consumed-meals-history-dat.api';
+import consumedMealsHistoryDay from './api/consumed-meals-history-day.api';
 
 DatabaseLoader.load();
 

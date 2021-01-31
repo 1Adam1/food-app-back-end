@@ -20,7 +20,7 @@ router.post('/persons/:personId/profiles',
       const personalProflie = new PersonalProfile(extendedBody);
       await personalProflie.save();
 
-      response.status(201).send(personalProflie.toJSON());
+      response.status(201).send(personalProflie);
     } catch (error) {
       response.status(400).send(error);
     }
