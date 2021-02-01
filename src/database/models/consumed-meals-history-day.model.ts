@@ -4,6 +4,12 @@ const consumedMealsHistoryDaySchema = new mongoose.Schema({
   date: {
     type: Date,
     required: true,
+    validate(value: Date) {
+      const currentTime = new Date().getTime();
+      if (value.getTime() > currentTime) {
+        throw new Error('Cannot use future date');
+      }
+    }
   },
   description: {
     type: String,

@@ -12,7 +12,13 @@ const shoppingListSchema = new mongoose.Schema({
     }
   ],
   date: {
-    type: Date
+    type: Date,
+    validate(value: Date) {
+      const currentTime = new Date().getTime();
+      if (value.getTime() > currentTime) {
+        throw new Error('Cannot use past date');
+      }
+    }
   },
   description: {
     type: String,
