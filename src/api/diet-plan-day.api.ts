@@ -9,6 +9,7 @@ import { PersonAuthorizationService } from '../services/autorization/person-auth
 import { PersonalProfileAuthorizationService } from '../services/autorization/personal-profile-authorization.srevice';
 import { KilocaloriesCounterService } from '../services/core/kilocalories-counter.service';
 import { MealTime } from '../types/interfaces/meal-time.interface';
+import { CommonUtilService } from '../services/common/common-util.service';
 
 const router = Router();
 
@@ -122,7 +123,13 @@ router.get('/persons/:personId/profiles/:personalProfileId/diet-plan-days',
   {
     try {
       const profile = request.extendedData!.personalProfile;
-      const result = await profile!.populate({path: 'dietPlan'}).execPopulate();
+      const match = CommonUtilService.prepareDateMatchForPopulateOperation(
+        'date',
+        request.query.dateFrom as string,
+        request.query.dateTo as string
+      );
+
+      const result = await profile!.populate({path: 'dietPlan', match}).execPopulate();
       const dietPlan = result.dietPlan;
       response.send(dietPlan);
     } catch (error) {
