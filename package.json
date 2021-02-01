@@ -21,16 +21,20 @@
   },
   "homepage": "https://github.com/1Adam1/food-app-back-end#readme",
   "dependencies": {
-    "@types/mongoose": "^5.10.3",
+    "bcrypt": "^5.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-typescript": "^7.12.7",
+    "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongoose": "^5.10.3",
     "@types/node": "^14.14.20",
     "babel-jest": "^26.6.3",
     "env-cmd": "^10.1.0",

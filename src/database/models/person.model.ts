@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { Gender } from '../types/enums/gender.enum';
+import { Gender } from '../../types/enums/gender.enum';
+import PersonalProfile from './personal-profile.model';
 
 const personSchema = new mongoose.Schema({
   name: {
@@ -21,9 +22,6 @@ const personSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  avatar: {
-    type: Buffer
-  },
   maintainer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -37,6 +35,21 @@ personSchema.virtual('profiles', {
   ref: 'PersonalProfile',
   localField: '_id',
   foreignField: 'person'
+});
+
+personSchema.methods.toJSON = function() {
+  const personObject = this.toObject() as any;
+  const fieldsToDelete = ['maintainer', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete personObject[field]);
+
+  return personObject;
+};
+
+personSchema.pre('remove', async function (next) {
+  await PersonalProfile.deleteMany({person: this._id});
+
+  next();
 });
 
 const Person = mongoose.model('Person', personSchema);

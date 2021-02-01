@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { Currency } from '../types/enums/currency.enum';
+import { Currency } from '../../types/enums/currency.enum';
 
 const shoppingListSchema = new mongoose.Schema({
   items: [
@@ -12,20 +12,19 @@ const shoppingListSchema = new mongoose.Schema({
     }
   ],
   date: {
-    type: Date
-  },
-  totalAmount: {
-    value: {
-      type: Number,
-      required: true,
-      min: 0
-    },
-    currency: {
-      type: Currency,
-      required: true
+    type: Date,
+    validate(value: Date) {
+      const currentTime = new Date().getTime();
+      if (value.getTime() > currentTime) {
+        throw new Error('Cannot use past date');
+      }
     }
   },
-  partialAmount: {
+  description: {
+    type: String,
+    trim: true
+  },
+  totalPrice: {
     value: {
       type: Number,
       required: true,

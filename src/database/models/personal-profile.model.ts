@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import ConsumedMealsHistoryDay from './consumed-meals-history-day.model';
+import DietPlanDay from './diet-plan-day.model';
 
 const personalProfileSchema = new mongoose.Schema({
   name: {
@@ -34,6 +36,22 @@ personalProfileSchema.virtual('dietPlan', {
   ref: 'DietPlanDay',
   localField: '_id',
   foreignField: 'profile'
+});
+
+personalProfileSchema.methods.toJSON = function() {
+  const personalProfileObject = this.toObject() as any;
+  const fieldsToDelete = ['createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete personalProfileObject[field]);
+
+  return personalProfileObject;
+};
+
+personalProfileSchema.pre('remove', async function (next) {
+  await ConsumedMealsHistoryDay.deleteMany({profile: this._id});
+  await DietPlanDay.deleteMany({profile: this._id});
+
+  next();
 });
 
 const PersonalProfile = mongoose.model('PersonalProfile', personalProfileSchema);

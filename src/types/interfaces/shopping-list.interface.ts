@@ -3,7 +3,7 @@ import { ProductOffer } from "./product-offer.interface";
 
 export interface ShoppingList {
   items: ProductOffer[];
+  description: string;
   date: Date;
-  totalAmount: Price | undefined;
-  partialAmount: Price | undefined;  
+  totalPrice: Price | undefined;
 }

@@ -1,11 +1,5 @@
-import express from 'express';
-import {DatabaseLoader} from './services/loaders/database-loader.service';
+import { DatabaseLoader } from './services/loaders/database-loader.service';
+import { ServerLoader } from './services/loaders/server-loader.service';
 
 DatabaseLoader.load();
-
-const app = express();
-const port = process.env.SERVER_PORT;
-
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
-});
+ServerLoader.load();

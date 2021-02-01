@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { Currency } from '../types/enums/currency.enum';
+import { Currency } from '../../types/enums/currency.enum';
+import { ProductOfferDataModelInterface } from '../interfaces/product-offer.model.interface';
 
 const productOfferSchema = new mongoose.Schema({
   name: {
@@ -41,5 +42,14 @@ const productOfferSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const ProductOffer = mongoose.model('ProductOffer', productOfferSchema);
+productOfferSchema.methods.toJSON = function() {
+  const productOfferObject = this.toObject() as any;
+  const fieldsToDelete = ['maintainer', 'createdAt', 'updatedAt', '__v'];
+
+  fieldsToDelete.forEach(field => delete productOfferObject[field]);
+
+  return productOfferObject;
+};
+
+const ProductOffer = mongoose.model<ProductOfferDataModelInterface>('ProductOffer', productOfferSchema);
 export default ProductOffer;
