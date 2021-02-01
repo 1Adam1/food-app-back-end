@@ -5,6 +5,6 @@ export interface UserData {
   password: string;
   name: string;
   surname: string;
-  description?: string;
+  description: string;
   tokens: Token[];
 }

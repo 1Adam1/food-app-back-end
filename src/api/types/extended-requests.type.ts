@@ -27,9 +27,7 @@ interface ExtendedData {
     consumedMealsHistoryDay?: ConsumedMealsHistoryDayDataModelInterface;
     consumedMeals?: MealDataModelInterface[];
     mealsToConsume?: MealDataModelInterface[];
-    consumedMealsHistoryDays?: ConsumedMealsHistoryDayDataModelInterface[];
     dietPlanDay?: DietPlanDayDataModelInterface;
-    dietPlanDays?: DietPlanDayDataModelInterface[];
   }; 
 }
 

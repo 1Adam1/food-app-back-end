@@ -6,5 +6,4 @@ export interface Product {
   description: string;
   defaultUnit: Unit;
   kilocaloriesPerUnit: number;
-  offers?: ProductOffer[];
 }
