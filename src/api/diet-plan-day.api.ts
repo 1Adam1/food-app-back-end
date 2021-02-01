@@ -24,7 +24,11 @@ router.post('/persons/:personId/profiles/:personalProfileId/:diet-plan-days',
       const personalProfileId = request.extendedData!.personalProfile!._id;
       const extendedBody = { ...request.body, profile: personalProfileId };
       
-      extendedBody.mealTimes = extendMealTimesWithMealtData(extendedBody.mealTimes, request.extendedData!.mealsToConsume!);
+      extendedBody.mealTimes = CommonUtilService.extendMealTimesWithMealData(
+        extendedBody.mealTimes, 
+        request.extendedData!.mealsToConsume!
+      );
+
       extendedBody.totalKilocaloriesConsumption = KilocaloriesCounterService.countForMealTimes(extendedBody.mealTimes);
       
       const dietPlanDay = new DietPlanDay(extendedBody);
@@ -36,20 +40,6 @@ router.post('/persons/:personId/profiles/:personalProfileId/:diet-plan-days',
     }
   }
 );
-
-const extendMealTimesWithMealtData = (mealTimesWithMealsIds: MealTime[], meals: MealDataModelInterface[]) => {
-  for (let i = 0; i < mealTimesWithMealsIds.length; i++) {
-    const mealId = mealTimesWithMealsIds[i].portion.meal;
-    const meal = meals.find(meal => meal._id.toString() === mealId.toString());
-    if (!meal) {
-      throw new Error();
-    }
-
-    mealTimesWithMealsIds[i].portion.meal = meal;
-  }
-
-  return mealTimesWithMealsIds;
-};
 
 router.get('/persons/:personId/profiles/:personalProfileId/:diet-plan-days/:planDayId',
   AuthenticationService.authenticateUser,
@@ -86,8 +76,11 @@ router.patch('/persons/:personId/profiles/:personalProfileId/:diet-plan-days/:pl
         (request.extendedData!.dietPlanDay as DietPlanDayDataModelIndexableInterface)[key] 
         = request.body[key]);
 
-      request.extendedData!.dietPlanDay!.mealTimes = 
-          extendMealTimesWithMealtData(request.extendedData!.dietPlanDay!.mealTimes, request.extendedData!.mealsToConsume!);
+      request.extendedData!.dietPlanDay!.mealTimes = CommonUtilService.extendMealTimesWithMealData(
+        request.extendedData!.dietPlanDay!.mealTimes, 
+        request.extendedData!.mealsToConsume!
+      );
+      
       request.extendedData!.dietPlanDay!.totalKilocaloriesConsumption 
         = KilocaloriesCounterService.countForMealTimes(request.extendedData!.dietPlanDay!.mealTimes);
 

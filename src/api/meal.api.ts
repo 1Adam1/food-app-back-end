@@ -7,6 +7,7 @@ import { MealAuthorizationService } from '../services/autorization/meal-authoriz
 import { KilocaloriesCounterService } from '../services/core/kilocalories-counter.service';
 import { Ingredient } from '../types/interfaces/ingredient.interface';
 import { ProductDataModelInterface } from '../database/interfaces/product.model.interface';
+import { CommonUtilService } from '../services/common/common-util.service';
 
 const router = Router();
 
@@ -18,7 +19,10 @@ router.post('/meals',
     try {
       const maintainer = request.extendedData!.user!._id;
       const extendedBody = { ...request.body, maintainer };
-      const extendedIngredients = extendIngrediensWithProductData(extendedBody.ingredients, request.extendedData!.mealsProducts!);
+      const extendedIngredients = CommonUtilService.extendIngrediensWithProductData(
+        extendedBody.ingredients, 
+        request.extendedData!.mealsProducts!
+      );
       
       extendedBody.totalKilocalories = KilocaloriesCounterService.countForIngredients(extendedIngredients);
       
@@ -31,20 +35,6 @@ router.post('/meals',
     }
   }
 );
-
-const extendIngrediensWithProductData = (ingredientsWithProductsIds: Ingredient[], products: ProductDataModelInterface[]) => {
-  for (let i = 0; i < ingredientsWithProductsIds.length; i++) {
-    const productId = ingredientsWithProductsIds[i].product;
-    const product = products.find(product => product._id.toString() === productId.toString());
-    if (!product) {
-      throw new Error();
-    }
-
-    ingredientsWithProductsIds[i].product = product;    
-  }
-
-  return ingredientsWithProductsIds;
-};
 
 router.get('/meals/:mealId',
   AuthenticationService.authenticateUser,
@@ -75,7 +65,10 @@ router.patch('/meals/:mealId',
     try {
       bodyFieldKeys.forEach(key => (request.extendedData!.meal as MealDataModelIdexableInterface)[key] = request.body[key]);
 
-      const extendedIngredients = extendIngrediensWithProductData(request.extendedData!.meal!.ingredients, request.extendedData!.mealsProducts!);
+      const extendedIngredients = CommonUtilService.extendIngrediensWithProductData(
+        request.extendedData!.meal!.ingredients, 
+        request.extendedData!.mealsProducts!
+      );
       request.extendedData!.meal!.totalKilocalories = KilocaloriesCounterService.countForIngredients(extendedIngredients);
 
       await request.extendedData!.meal!.save();
