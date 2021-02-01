@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import { PersonalProfileDataModelIdexableInterface } from '../database/interfaces/personal-profile.interface';
-import PersonalProfile from '../database/models/personal-profile';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import PersonalProfile from '../database/models/personal-profile.model';
+import { ExtendedRequestType } from './types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { PersonAuthorizationService } from '../services/autorization/person-authorization.service';
 import { PersonalProfileAuthorizationService } from '../services/autorization/personal-profile-authorization.srevice';

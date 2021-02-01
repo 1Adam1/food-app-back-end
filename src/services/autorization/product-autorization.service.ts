@@ -1,6 +1,6 @@
 import { Response, NextFunction } from 'express';
-import Product from '../../database/models/product';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import Product from '../../database/models/product.model';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class ProductAuthorizationService {
   static async authorizateProduct(request: ExtendedRequestType, response: Response, next: NextFunction) {

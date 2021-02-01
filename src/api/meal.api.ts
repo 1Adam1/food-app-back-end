@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import { MealDataModelIdexableInterface } from '../database/interfaces/meal.model.interface';
-import Meal from '../database/models/meal';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import Meal from '../database/models/meal.model';
+import { ExtendedRequestType } from './types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { MealAuthorizationService } from '../services/autorization/meal-authorization.service';
 import { KilocaloriesCounterService } from '../services/core/kilocalories-counter.service';

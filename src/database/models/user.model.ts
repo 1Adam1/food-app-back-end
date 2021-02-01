@@ -4,11 +4,11 @@ import { PasswordHashingService } from '../../services/authentication/password-h
 import { Token } from '../../types/interfaces/token';
 import { UserData } from '../../types/interfaces/user-data.interface';
 import { UserDataModelInterface, UserDataStaticModelInterface } from '../interfaces/user-data.model.interface';
-import Meal from './meal';
-import Person from './person';
-import Product from './product';
-import Shop from './shop';
-import ShoppingList from './shopping-list';
+import Meal from './meal.model';
+import Person from './person.model';
+import Product from './product.model';
+import Shop from './shop.model';
+import ShoppingList from './shopping-list.model';
 
 const userSchema = new mongoose.Schema({
   login: {

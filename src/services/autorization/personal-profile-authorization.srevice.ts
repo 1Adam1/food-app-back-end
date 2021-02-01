@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
-import PersonalProfile from '../../database/models/personal-profile';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import PersonalProfile from '../../database/models/personal-profile.model';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class PersonalProfileAuthorizationService {
   static async authorizatePersonalProfile(request: ExtendedRequestType, response: Response, next: NextFunction) {

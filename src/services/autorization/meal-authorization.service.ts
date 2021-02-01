@@ -1,8 +1,8 @@
 import { Response, NextFunction } from 'express';
 import { ProductDataModelInterface } from '../../database/interfaces/product.model.interface';
-import Meal from '../../database/models/meal';
-import Product from '../../database/models/product';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import Meal from '../../database/models/meal.model';
+import Product from '../../database/models/product.model';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class MealAuthorizationService {
   static async authorizateMeal(request: ExtendedRequestType, response: Response, next: NextFunction) {

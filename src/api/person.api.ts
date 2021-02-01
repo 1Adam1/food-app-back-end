@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import { PersonDataModelIdexableInterface } from '../database/interfaces/person.model.inteface';
-import Person from '../database/models/person';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import Person from '../database/models/person.model';
+import { ExtendedRequestType } from './types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { PersonAuthorizationService } from '../services/autorization/person-authorization.service';
 

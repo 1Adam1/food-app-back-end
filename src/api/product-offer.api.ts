@@ -1,7 +1,7 @@
 import { Router, Response } from 'express';
 import { ProductOfferDataModelIdexableInterface } from '../database/interfaces/product-offer.model.interface';
-import ProductOffer from '../database/models/product-offer';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import ProductOffer from '../database/models/product-offer.model';
+import { ExtendedRequestType } from './types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { ProductAuthorizationService } from '../services/autorization/product-autorization.service';
 import { ProductOfferAuthorizationService } from '../services/autorization/product-offer-authorization.service';

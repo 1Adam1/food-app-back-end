@@ -1,8 +1,8 @@
 import { Router, Response } from 'express';
 import { ConsumedMealsHistoryDayDataModelIndexableInterface } from '../database/interfaces/consumed-meals-history-day.interface.model';
 import { MealDataModelInterface } from '../database/interfaces/meal.model.interface';
-import ConsumedMealsHistoryDay from '../database/models/consumed-meals-history-day';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import ConsumedMealsHistoryDay from '../database/models/consumed-meals-history-day.model';
+import { ExtendedRequestType } from './types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { ConsumedMealsHistoryDayAuthorizationService } from '../services/autorization/consumed-meals-history-day-authorization.service';
 import { PersonAuthorizationService } from '../services/autorization/person-authorization.service';

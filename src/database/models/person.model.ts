@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { Gender } from '../../types/enums/gender.enum';
-import PersonalProfile from './personal-profile';
+import PersonalProfile from './personal-profile.model';
 
 const personSchema = new mongoose.Schema({
   name: {

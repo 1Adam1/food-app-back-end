@@ -1,7 +1,7 @@
 import {Router, Response, Request} from 'express';
 import { UserDataModelIdexableInterface } from '../database/interfaces/user-data.model.interface';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
-import UserModel from '../database/models/user';
+import { ExtendedRequestType } from './types/extended-requests.type';
+import UserModel from '../database/models/user.model';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 
 const router = Router();

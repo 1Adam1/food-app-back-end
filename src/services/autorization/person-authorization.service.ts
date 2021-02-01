@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
-import Person from '../../database/models/person';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import Person from '../../database/models/person.model';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class PersonAuthorizationService {
   static async authorizatePerson(request: ExtendedRequestType, response: Response, next: NextFunction) {

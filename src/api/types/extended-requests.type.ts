@@ -1,15 +1,15 @@
 import { Request } from 'express';
 import { Token } from '../../types/interfaces/token';
-import { ConsumedMealsHistoryDayDataModelInterface } from '../interfaces/consumed-meals-history-day.interface.model';
-import { DietPlanDayDataModelInterface } from '../interfaces/diet-plan-day.model.interface';
-import { MealDataModelInterface } from '../interfaces/meal.model.interface';
-import { PersonDataModelInterface } from '../interfaces/person.model.inteface';
-import { PersonalProflieDataModelInterface } from '../interfaces/personal-profile.interface';
-import { ProductOfferDataModelInterface } from '../interfaces/product-offer.model.interface';
-import { ProductDataModelInterface } from '../interfaces/product.model.interface';
-import { ShopDataModelInterface } from '../interfaces/shop.model.interface';
-import { ShoppingListDataModelInterface } from '../interfaces/shopping-list.model.interface';
-import { UserDataModelInterface } from '../interfaces/user-data.model.interface';
+import { ConsumedMealsHistoryDayDataModelInterface } from '../../database/interfaces/consumed-meals-history-day.interface.model';
+import { DietPlanDayDataModelInterface } from '../../database/interfaces/diet-plan-day.model.interface';
+import { MealDataModelInterface } from '../../database/interfaces/meal.model.interface';
+import { PersonDataModelInterface } from '../../database/interfaces/person.model.inteface';
+import { PersonalProflieDataModelInterface } from '../../database/interfaces/personal-profile.interface';
+import { ProductOfferDataModelInterface } from '../../database/interfaces/product-offer.model.interface';
+import { ProductDataModelInterface } from '../../database/interfaces/product.model.interface';
+import { ShopDataModelInterface } from '../../database/interfaces/shop.model.interface';
+import { ShoppingListDataModelInterface } from '../../database/interfaces/shopping-list.model.interface';
+import { UserDataModelInterface } from '../../database/interfaces/user-data.model.interface';
 
 interface ExtendedData {
   extendedData?: {

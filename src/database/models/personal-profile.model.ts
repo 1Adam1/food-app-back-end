@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import ConsumedMealsHistoryDay from './consumed-meals-history-day';
-import DietPlanDay from './diet-plan-day';
+import ConsumedMealsHistoryDay from './consumed-meals-history-day.model';
+import DietPlanDay from './diet-plan-day.model';
 
 const personalProfileSchema = new mongoose.Schema({
   name: {

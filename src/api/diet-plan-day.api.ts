@@ -1,8 +1,8 @@
 import { Router, Response } from 'express';
 import { DietPlanDayDataModelIndexableInterface } from '../database/interfaces/diet-plan-day.model.interface';
 import { MealDataModelInterface } from '../database/interfaces/meal.model.interface';
-import DietPlanDay from '../database/models/diet-plan-day';
-import { ExtendedRequestType } from '../database/types/extended-requests.type';
+import DietPlanDay from '../database/models/diet-plan-day.model';
+import { ExtendedRequestType } from './types/extended-requests.type';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { DietPlanDayAuthorizationService } from '../services/autorization/diet-plan-day-authorization';
 import { PersonAuthorizationService } from '../services/autorization/person-authorization.service';

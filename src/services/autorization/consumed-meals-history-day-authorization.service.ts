@@ -1,8 +1,8 @@
 import { NextFunction, Response } from 'express';
 import { MealDataModelInterface } from '../../database/interfaces/meal.model.interface';
-import ConsumedMealsHistoryDay from '../../database/models/consumed-meals-history-day';
-import Meal from '../../database/models/meal';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import ConsumedMealsHistoryDay from '../../database/models/consumed-meals-history-day.model';
+import Meal from '../../database/models/meal.model';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class ConsumedMealsHistoryDayAuthorizationService {
   static async authorizateHistoryDay(request: ExtendedRequestType, response: Response, next: NextFunction) {

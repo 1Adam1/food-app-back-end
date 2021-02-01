@@ -1,10 +1,10 @@
 import { Response, NextFunction } from 'express';
 import { ProductOfferDataModelIdexableInterface } from '../../database/interfaces/product-offer.model.interface';
-import Product from '../../database/models/product';
-import ProductOffer from '../../database/models/product-offer';
-import Shop from '../../database/models/shop';
-import ShoppingList from '../../database/models/shopping-list';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import Product from '../../database/models/product.model';
+import ProductOffer from '../../database/models/product-offer.model';
+import Shop from '../../database/models/shop.model';
+import ShoppingList from '../../database/models/shopping-list.model';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class ShoppingListAuthorizationService {
   static async authorizateShoppingList(request: ExtendedRequestType, response: Response, next: NextFunction) {

@@ -1,8 +1,8 @@
 import {Response, NextFunction} from 'express';
-import User from '../../database/models/user';
+import User from '../../database/models/user.model';
 import jsonwebtoken from 'jsonwebtoken';
 import { TokenModelInterface } from '../../database/interfaces/token.model.interface';
-import { ExtendedRequestType } from '../../database/types/extended-requests.type';
+import { ExtendedRequestType } from '../../api/types/extended-requests.type';
 
 export class AuthenticationService {
   static async authenticateUser(request: ExtendedRequestType, response: Response, next: NextFunction) {   
