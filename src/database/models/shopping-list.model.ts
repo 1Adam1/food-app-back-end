@@ -15,7 +15,7 @@ const shoppingListSchema = new mongoose.Schema({
     type: Date,
     validate(value: Date) {
       const currentTime = new Date().getTime();
-      if (value.getTime() > currentTime) {
+      if (value.getTime() < currentTime) {
         throw new Error('Cannot use past date');
       }
     }
