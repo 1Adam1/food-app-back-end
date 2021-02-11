@@ -53,7 +53,7 @@ router.patch('/meals/:mealId',
   MealAuthorizationService.authorizateMeal,
   MealAuthorizationService.authorizeMealsProducts,
   async (request: ExtendedRequestType, response: Response) => {
-    const allowedFieldsKeys = ['name', 'description', 'recipe', 'ingredients'];
+    const allowedFieldsKeys = ['name', 'description', 'recipe'];
     const bodyFieldKeys = Object.keys(request.body);
 
     const operationIsValid = bodyFieldKeys.every(key => allowedFieldsKeys.includes(key));

@@ -65,7 +65,7 @@ router.get('/users/me', AuthenticationService.authenticateUser, (request: Extend
 });
 
 router.patch('/users/me', AuthenticationService.authenticateUser, async (request: ExtendedRequestType, response: Response) => {
-  const allowedFieldsKeys = ['name', 'surname', 'description', 'password'];
+  const allowedFieldsKeys = ['name', 'surname', 'description'];
   const bodyFieldKeys = Object.keys(request.body);
   const operationIsValid = bodyFieldKeys.every(key => allowedFieldsKeys.includes(key));
   
